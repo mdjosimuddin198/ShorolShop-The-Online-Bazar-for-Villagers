@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
   return (
     <Card className=" rounded-2xl shadow-md hover:shadow-lg transition p-2">
       <CardContent className="flex flex-col ">
-        <div className="w-full relative rounded-xl overflow-hidden bg-gray-100">
+        <div className="w-full h-40 relative rounded-xl overflow-hidden bg-gray-100">
           <Image
             src={image}
             alt={title}
