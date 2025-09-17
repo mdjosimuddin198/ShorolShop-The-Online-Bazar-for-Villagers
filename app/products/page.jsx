@@ -70,8 +70,10 @@ const Products = () => {
           </select>
         </div>
       )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
+      <h2 className="text-4xl text-center text-secondary font-semibold py-4">
+        Explore Our Products
+      </h2>
+      <div className="grid grid-cols-1 py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
         {filterProducts.map((product) => (
           <ProductCard key={product.id} product={product}></ProductCard>
         ))}

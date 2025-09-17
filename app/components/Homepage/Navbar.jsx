@@ -37,7 +37,7 @@ export default function Navbar() {
     </>
   );
   return (
-    <header className=" top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
+    <header className="w-11/12 mx-auto top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="mx-auto max-w-7xl h-16 px-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold">
@@ -50,13 +50,13 @@ export default function Navbar() {
         {/* Right side */}
         <div className="flex items-center gap-2">
           {/* Search (desktop) */}
-          <div className="relative hidden md:block">
+          {/* <div className="relative hidden md:block">
             <Input
               placeholder="What are you looking for?"
               className="w-64 pr-10"
             />
             <f className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          </div>
+          </div> */}
 
           <Button variant="secondary" size="icon" aria-label="Wishlist">
             <FaHeart className="h-8 w-8" />
@@ -66,7 +66,7 @@ export default function Navbar() {
           </Button>
 
           {/* Mobile menu */}
-          <Sheet>
+          <Sheet className="bg-red-700">
             <SheetTrigger asChild>
               <Button
                 variant="secondary"
@@ -82,12 +82,12 @@ export default function Navbar() {
               <SheetTitle className="font-bold">SwifMart</SheetTitle>
               <nav className="grid gap-4">
                 {navlink}
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <div className="relative">
                     <Input placeholder="Search…" className="pr-10" />
                     <FaSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   </div>
-                </div>
+                </div> */}
               </nav>
             </SheetContent>
           </Sheet>

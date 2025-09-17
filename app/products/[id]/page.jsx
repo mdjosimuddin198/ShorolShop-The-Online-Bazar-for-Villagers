@@ -1,6 +1,17 @@
 "use client";
 import ProductDetailsLoading from "@/app/components/Loading/ProductDetailsLoading";
 import getProduct from "@/app/hook/getProduct";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { DialogTitle } from "@radix-ui/react-dialog";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -50,7 +61,7 @@ const ProductDetails = () => {
 
   return (
     <div className="py-10">
-      <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-white shadow-lg rounded-2xl mb-6">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 py-4 bg-white shadow-lg rounded-2xl mb-6">
         {/* Left: Product Image */}
         <div className="relative w-full h-[400px] bg-gray-100 ">
           <Image
@@ -75,7 +86,7 @@ const ProductDetails = () => {
             <span className="line-through text-gray-400">
               ${product.oldPrice}
             </span>
-            <span className="text-2xl font-bold text-purple-600">
+            <span className="text-2xl font-bold text-secondary">
               ${product.newPrice}
             </span>
           </div>
@@ -103,9 +114,7 @@ const ProductDetails = () => {
                 <button
                   key={color}
                   className={`w-8 h-8 rounded-full border-2 ${
-                    bandColor === color
-                      ? "border-purple-600"
-                      : "border-gray-300"
+                    bandColor === color ? "border-secondary" : "border-gray-300"
                   }`}
                   style={{ backgroundColor: color }}
                   onClick={() => setBandColor(color)}
@@ -123,7 +132,7 @@ const ProductDetails = () => {
                   key={size}
                   className={`px-4 py-2 rounded-lg border ${
                     wristSize === size
-                      ? "border-purple-600 bg-purple-100"
+                      ? "border-secondary bg-purple-100"
                       : "border-gray-300"
                   }`}
                   onClick={() => setWristSize(size)}
@@ -133,24 +142,100 @@ const ProductDetails = () => {
               ))}
             </div>
           </div>
+          <div>
+            <h2 className="text-xl">
+              Total Price :
+              <span className="text-secondary font-semibold">
+                ${totalPrice}
+              </span>
+            </h2>
+          </div>
 
           {/* Quantity + Add to Cart */}
           <div className="mt-6 flex items-center gap-4">
-            <div className="flex items-center border rounded-lg">
-              <button className="px-3 py-1" onClick={decreasePrice}>
+            <div className="flex items-center border gap-2 rounded-lg">
+              <Button variant="secondary" onClick={decreasePrice}>
                 -
-              </button>
+              </Button>
               <span className="px-4">{quantity}</span>
-              <button className="px-3 py-1" onClick={increasePrice}>
+              <Button variant="secondary" onClick={increasePrice}>
                 +
-              </button>
+              </Button>
             </div>
-            <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
-              Add to Cart
-            </button>
-            <button className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700">
-              {totalPrice}
-            </button>
+            <div className="">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="secondary">Order Now</Button>
+                </DialogTrigger>
+
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle className="text-secondary font-semibold text-xl text-center">
+                      Please Fill Out This From
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="flex items-center gap-3  justify-evenly">
+                    <div className="w-20 relative h-20">
+                      <Image
+                        src={product.image}
+                        alt={product.title}
+                        fill
+                        priority
+                        className="rounded-md "
+                        // sizes="(max-width: 768px) 100vw , 48vw"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <h2 className="font-semibold">{product.title}</h2>
+                      <h2 className=" ">
+                        Product Price :
+                        <span className="text-secondary font-semibold">
+                          {" "}
+                          {product.newPrice}
+                        </span>
+                      </h2>
+                      <p>
+                        Quantity:
+                        <span className="text-secondary font-semibold">
+                          {" "}
+                          {quantity}
+                        </span>
+                      </p>
+                      <p>
+                        Total Price:
+                        <span className="text-secondary font-semibold">
+                          {" "}
+                          {totalPrice}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-4">
+                    <Input
+                      placeholder="Enter Your Name"
+                      className="w-full h-8  "
+                    />
+                    <Input value="32" className="w-full h-8  " readOnly />
+                    <Textarea
+                      placeholder="Enter Your Address"
+                      className="w-full h-8  "
+                    />
+                    <Input
+                      placeholder="Enter Your Number "
+                      className="w-full h-8  "
+                      type="number"
+                    />
+                  </div>
+
+                  <DialogFooter>
+                    <Button variant="secondary" className="cursor-pointer">
+                      Confrim Process
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
         </div>
       </div>
