@@ -1,6 +1,6 @@
 "use client";
 import ProductDetailsLoading from "@/app/components/Loading/ProductDetailsLoading";
-import getProduct from "@/app/hook/getProduct";
+// import getProduct from "@/hook/getProduct";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import getProduct from "@/hook/getProduct";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";

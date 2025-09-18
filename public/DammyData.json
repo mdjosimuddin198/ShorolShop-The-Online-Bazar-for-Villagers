@@ -1,6 +1,5 @@
 [
   {
-    "id": 1,
     "title": "Classy Modern Smart Watch",
     "reviews": 2,
     "oldPrice": 99.0,
@@ -14,7 +13,6 @@
     "image": "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg"
   },
   {
-    "id": 2,
     "title": "Stylish Fitness Tracker",
     "reviews": 5,
     "oldPrice": 120.0,
@@ -28,7 +26,6 @@
     "image": "https://images.pexels.com/photos/4379290/pexels-photo-4379290.jpeg"
   },
   {
-    "id": 3,
     "title": "Wireless Bluetooth Earbuds",
     "reviews": 15,
     "oldPrice": 150.0,
@@ -42,7 +39,6 @@
     "image": "https://images.pexels.com/photos/3585797/pexels-photo-3585797.jpeg"
   },
   {
-    "id": 4,
     "title": "Gaming Headset",
     "reviews": 12,
     "oldPrice": 80.0,
@@ -56,7 +52,6 @@
     "image": "https://images.unsplash.com/photo-1673669236244-60f764c15f27"
   },
   {
-    "id": 5,
     "title": "4K Action Camera",
     "reviews": 9,
     "oldPrice": 220.0,
@@ -70,7 +65,6 @@
     "image": "https://images.pexels.com/photos/26347764/pexels-photo-26347764.jpeg"
   },
   {
-    "id": 6,
     "title": "Portable Bluetooth Speaker",
     "reviews": 18,
     "oldPrice": 70.0,
@@ -84,7 +78,6 @@
     "image": "https://images.pexels.com/photos/18542243/pexels-photo-18542243.jpeg"
   },
   {
-    "id": 7,
     "title": "Smartphone Tripod",
     "reviews": 7,
     "oldPrice": 40.0,
@@ -98,7 +91,6 @@
     "image": "https://images.pexels.com/photos/1629200/pexels-photo-1629200.jpeg"
   },
   {
-    "id": 8,
     "title": "DSLR Camera",
     "reviews": 11,
     "oldPrice": 850.0,
@@ -112,7 +104,6 @@
     "image": "https://images.pexels.com/photos/1292770/pexels-photo-1292770.jpeg"
   },
   {
-    "id": 9,
     "title": "Wireless Keyboard & Mouse",
     "reviews": 10,
     "oldPrice": 65.0,
@@ -126,7 +117,6 @@
     "image": "https://images.unsplash.com/photo-1550009158-9ebf69173e03"
   },
   {
-    "id": 10,
     "title": "Curved Gaming Monitor",
     "reviews": 14,
     "oldPrice": 450.0,
@@ -140,7 +130,6 @@
     "image": "https://images.pexels.com/photos/30836160/pexels-photo-30836160.jpeg"
   },
   {
-    "id": 11,
     "title": "Mechanical Gaming Keyboard",
     "reviews": 20,
     "oldPrice": 110.0,
@@ -154,7 +143,6 @@
     "image": "https://images.unsplash.com/photo-1729501212345-477b92b1ae3a"
   },
   {
-    "id": 12,
     "title": "Smart Home Assistant",
     "reviews": 22,
     "oldPrice": 130.0,

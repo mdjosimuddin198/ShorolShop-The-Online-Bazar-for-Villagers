@@ -7,7 +7,7 @@ import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
   const {
-    id,
+    _id,
     category,
     reviews,
     image,
@@ -53,7 +53,7 @@ const ProductCard = ({ product }) => {
           Add to Cart
         </Button>
         <Link
-          href={`products/${id}`}
+          href={`products/${_id}`}
           className="cursor-pointer"
           variant="secondary"
         >

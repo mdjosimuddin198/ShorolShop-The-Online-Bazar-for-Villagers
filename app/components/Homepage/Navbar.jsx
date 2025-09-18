@@ -1,15 +1,7 @@
 "use client";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  FaBox,
-  FaEnvelope,
-  FaHeart,
-  FaHome,
-  FaInfoCircle,
-  FaSearch,
-} from "react-icons/fa";
+import { Button } from "../../../components/ui/button";
+import { FaBox, FaHeart, FaHome, FaInfoCircle } from "react-icons/fa";
 import { IoCart, IoMenu } from "react-icons/io5";
 import {
   Sheet,
@@ -17,8 +9,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+// import LoginBtn from "../actions/LoginBtn";
+// import RegisterBtn from "../actions/RegisterBtn";
+import { useSession } from "next-auth/react";
+import LoginBtn from "../actions/LoginBtn";
+import RegisterBtn from "../actions/RegisterBtn";
 
 export default function Navbar() {
+  const session = useSession();
   const navlink = (
     <>
       <Link href="/" className="flex items-center gap-2">
@@ -31,9 +29,6 @@ export default function Navbar() {
       <Link href="/about" className="flex items-center gap-2">
         <FaInfoCircle /> About
       </Link>
-      <Link href="/signup" className="flex items-center gap-2">
-        <FaEnvelope /> Sign Up
-      </Link>
     </>
   );
   return (
@@ -41,7 +36,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl h-16 px-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-xl font-bold">
-          NovaCart
+          ShorolShop
         </Link>
 
         {/* Desktop links */}
@@ -58,12 +53,21 @@ export default function Navbar() {
             <f className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           </div> */}
 
-          <Button variant="secondary" size="icon" aria-label="Wishlist">
-            <FaHeart className="h-8 w-8" />
-          </Button>
-          <Button variant="secondary" size="icon" aria-label="Cart">
-            <IoCart className="h-8 w-8" />
-          </Button>
+          {session ? (
+            <>
+              <LoginBtn />
+              <RegisterBtn />
+            </>
+          ) : (
+            <>
+              <Button variant="secondary" size="icon" aria-label="Wishlist">
+                <FaHeart className="h-8 w-8" />
+              </Button>
+              <Button variant="secondary" size="icon" aria-label="Cart">
+                <IoCart className="h-8 w-8" />
+              </Button>
+            </>
+          )}
 
           {/* Mobile menu */}
           <Sheet className="bg-red-700">

@@ -1,12 +1,15 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import ProductCard from "../components/productCard/ProductCard";
-import getProducts from "../hook/getProducts";
-import ProductsLoading from "../components/Loading/ProductsLoading";
+// import ProductCard from "../components/productCard/ProductCard";
+// import ProductsLoading from "../components/Loading/ProductsLoading";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+
+import ProductsLoading from "../components/Loading/ProductsLoading";
+import ProductCard from "../components/productCard/ProductCard";
+import getProducts from "@/hook/getProducts";
 const Products = () => {
   const [searchItem, setSerchItem] = useState("");
   const [fillterdByCatagory, SetFillterdByCatagory] = useState("");
@@ -75,7 +78,7 @@ const Products = () => {
       </h2>
       <div className="grid grid-cols-1 py-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
         {filterProducts.map((product) => (
-          <ProductCard key={product.id} product={product}></ProductCard>
+          <ProductCard key={product._id} product={product}></ProductCard>
         ))}
 
         {filterProducts.length === 0 && (

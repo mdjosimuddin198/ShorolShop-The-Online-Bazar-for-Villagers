@@ -18,7 +18,7 @@ const Footer = () => {
         {/* Brand & Address */}
         <div>
           <h2 className="text-2xl font-bold  flex items-center gap-2 mb-4">
-            NovaCart
+            ShorolShop
           </h2>
           <p className="mb-4 leading-relaxed">
             Your trusted partner for premium electronics and lifestyle products.
@@ -32,7 +32,7 @@ const Footer = () => {
               <FaPhoneAlt /> +880 15345-67890
             </p>
             <p className="flex items-center gap-2">
-              <AiOutlineMail /> novacart-official@gmail.com
+              <AiOutlineMail /> ShorolShop-official@gmail.com
             </p>
           </div>
         </div>
@@ -104,7 +104,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="mt-12 border-t border-gray-800 pt-6 text-center text-sm text-gray-500">
-        © {new Date().getFullYear()} NovaCart. All rights reserved.
+        © {new Date().getFullYear()} ShorolShop. All rights reserved.
       </div>
     </footer>
   );
