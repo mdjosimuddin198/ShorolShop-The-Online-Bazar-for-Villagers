@@ -11,12 +11,15 @@ import {
 } from "@/components/ui/sheet";
 // import LoginBtn from "../actions/LoginBtn";
 // import RegisterBtn from "../actions/RegisterBtn";
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import LoginBtn from "../actions/LoginBtn";
 import RegisterBtn from "../actions/RegisterBtn";
+import Image from "next/image";
 
 export default function Navbar() {
-  const session = useSession();
+  const { data: session, status } = useSession();
+  console.log("session for user info ", session);
+  console.log("hello status", status);
   const navlink = (
     <>
       <Link href="/" className="flex items-center gap-2">
@@ -29,6 +32,7 @@ export default function Navbar() {
       <Link href="/about" className="flex items-center gap-2">
         <FaInfoCircle /> About
       </Link>
+      {/* <Button onClick={() => signOut()}>Sign Out</Button> */}
     </>
   );
   return (
@@ -43,7 +47,7 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-6">{navlink}</nav>
 
         {/* Right side */}
-        <div className="flex items-center gap-2">
+        <div className="flex  items-center gap-2">
           {/* Search (desktop) */}
           {/* <div className="relative hidden md:block">
             <Input
@@ -55,17 +59,26 @@ export default function Navbar() {
 
           {session ? (
             <>
-              <LoginBtn />
-              <RegisterBtn />
-            </>
-          ) : (
-            <>
               <Button variant="secondary" size="icon" aria-label="Wishlist">
                 <FaHeart className="h-8 w-8" />
               </Button>
               <Button variant="secondary" size="icon" aria-label="Cart">
                 <IoCart className="h-8 w-8" />
               </Button>
+              <div className="relative w-10 h-10 ">
+                <Image
+                  src={session.user.image}
+                  alt={session.user.name}
+                  fill
+                  className="object-cover rounded-full"
+                  priority
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <LoginBtn />
+              <RegisterBtn />
             </>
           )}
 
@@ -92,6 +105,25 @@ export default function Navbar() {
                     <FaSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   </div>
                 </div> */}
+                {session ? (
+                  <>
+                    <LoginBtn />
+                    <RegisterBtn />
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="secondary"
+                      size="icon"
+                      aria-label="Wishlist"
+                    >
+                      <FaHeart className="h-8 w-8" />
+                    </Button>
+                    <Button variant="secondary" size="icon" aria-label="Cart">
+                      <IoCart className="h-8 w-8" />
+                    </Button>
+                  </>
+                )}
               </nav>
             </SheetContent>
           </Sheet>

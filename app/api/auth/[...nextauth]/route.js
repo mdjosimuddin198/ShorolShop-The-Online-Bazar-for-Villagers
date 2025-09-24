@@ -1,35 +1,61 @@
+import bcrypt from "bcrypt";
+import dbConnect from "@/lib/database/db";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-
-const handler = NextAuth({
+// josimuddin0505
+export const authOptions = {
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "Enter Your Email",
+        },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+      async authorize(credentials) {
+        try {
+          const collection = await dbConnect("UserCollection");
+          const userInfo = await collection.findOne({
+            email: credentials.email,
+          });
 
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
+          if (!userInfo) {
+            console.log("User not found");
+            return null;
+          }
+
+          const isPasswordOk = await bcrypt.compare(
+            credentials.password,
+            userInfo.password
+          );
+
+          if (!isPasswordOk) {
+            console.log("Incorrect password");
+            return null;
+          }
+
+          return {
+            id: userInfo._id.toString(),
+            name: userInfo.name,
+            email: userInfo.email,
+            image: userInfo.image,
+          };
+        } catch (error) {
+          console.error("Authorize error:", error);
           return null;
-
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
         }
       },
     }),
   ],
-});
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

@@ -26,10 +26,10 @@ const Footer = () => {
           </p>
           <div className="space-y-2">
             <p className="flex items-center gap-2">
-              <FaMapMarkerAlt /> Dhaka, Bangladesh
+              <FaMapMarkerAlt /> Rajshai, Bangladesh
             </p>
             <p className="flex items-center gap-2">
-              <FaPhoneAlt /> +880 15345-67890
+              <FaPhoneAlt /> +880 1725508545
             </p>
             <p className="flex items-center gap-2">
               <AiOutlineMail /> ShorolShop-official@gmail.com
