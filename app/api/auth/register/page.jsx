@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import axios from "axios";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebook } from "react-icons/fa";
+import LoginBtn from "@/app/components/actions/LoginBtn";
 
 export default function RegisterPage() {
   // using plain JavaScript only, no TypeScript
@@ -72,10 +75,34 @@ export default function RegisterPage() {
               onChange={handleChange}
               required
             />
-            <Button type="submit" className="w-full">
+            <Button type="submit" variant="secondary" className="w-full">
               Register Now
             </Button>
           </form>
+          <div className="flex items-center my-6">
+            <div className="flex-grow h-px bg-gray-200" />
+            <span className="px-2 text-gray-400 text-sm">Or </span>
+            <div className="flex-grow h-px bg-gray-200" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <Button
+              variant="outline"
+              className="w-full h-12 flex items-center gap-2 rounded-xl"
+            >
+              <FcGoogle className="text-xl" /> Google
+            </Button>
+            <Button
+              variant="outline"
+              className="w-full h-12 flex items-center gap-2 rounded-xl"
+            >
+              <FaFacebook className="text-blue-600 text-xl" /> Facebook
+            </Button>
+          </div>
+
+          <p className="text-sm text-center mt-6">
+            Already have an account? <LoginBtn />
+          </p>
         </CardContent>
       </Card>
     </div>

@@ -14,11 +14,14 @@ import { Textarea } from "@/components/ui/textarea";
 import getProduct from "@/hook/getProduct";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const ProductDetails = () => {
+  const router = useRouter();
+  const { data: session, status } = useSession();
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
 
@@ -56,7 +59,16 @@ const ProductDetails = () => {
   if (error) {
     return <p>Products not Found...</p>;
   }
-  if (isLoading) {
+
+  useEffect(() => {
+    if (status !== "loading" && !session) {
+      return router.push(
+        "/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fregister"
+      );
+    }
+  }, [session, status, router]);
+
+  if (isLoading || status === "loading") {
     return <ProductDetailsLoading />;
   }
 

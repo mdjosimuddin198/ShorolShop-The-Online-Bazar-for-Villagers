@@ -13,7 +13,7 @@ const LoginBtn = () => {
         signIn();
       }}
     >
-      <FaEnvelope /> Sign In
+      Log In
     </Button>
   );
 };

@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import dbConnect from "@/lib/database/db";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { signIn } from "next-auth/react";
 // josimuddin0505
 export const authOptions = {
   providers: [
@@ -50,6 +51,9 @@ export const authOptions = {
       },
     }),
   ],
+  page: {
+    signIn: "/api/auth/signin",
+  },
   session: {
     strategy: "jwt",
   },

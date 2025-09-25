@@ -32,7 +32,7 @@ export default function Navbar() {
       <Link href="/about" className="flex items-center gap-2">
         <FaInfoCircle /> About
       </Link>
-      {/* <Button onClick={() => signOut()}>Sign Out</Button> */}
+      {session && <Button onClick={() => signOut()}>Sign Out</Button>}
     </>
   );
   return (
