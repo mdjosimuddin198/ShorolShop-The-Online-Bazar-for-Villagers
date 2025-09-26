@@ -9,8 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-// import LoginBtn from "../actions/LoginBtn";
-// import RegisterBtn from "../actions/RegisterBtn";
+
 import { useSession, signIn, signOut } from "next-auth/react";
 import LoginBtn from "../actions/LoginBtn";
 import RegisterBtn from "../actions/RegisterBtn";
@@ -25,17 +24,41 @@ export default function Navbar() {
   };
   const navlink = (
     <>
-      <Link href="/" className="flex items-center gap-2">
+      <Link href="/" className="flex items-center gap-2 hover:text-secondary">
         <FaHome />
         Home
       </Link>
-      <Link href="/products" className="flex items-center gap-2">
+      <Link
+        href="/products"
+        className="flex items-center gap-2 hover:text-secondary"
+      >
         <FaBox /> Products
       </Link>
-      <Link href="/about" className="flex items-center gap-2">
+      <Link
+        href="/about"
+        className="flex items-center gap-2 hover:text-secondary"
+      >
         <FaInfoCircle /> About
       </Link>
-      {session && <Button onClick={handleSignOut}>Sign Out</Button>}
+    </>
+  );
+
+  const userNav = (
+    <>
+      <Link href="/myorder" className="flex  items-center gap-2">
+        <IoCart className="h-8 w-8" />
+        My Order
+      </Link>
+      <Link href="/myorder" className="flex  items-center gap-2">
+        <FaHeart className="h-8 w-8" />
+        Wish List
+      </Link>
+
+      {session && (
+        <Button className="mt-8" onClick={handleSignOut}>
+          Sign Out
+        </Button>
+      )}
     </>
   );
   return (
@@ -62,21 +85,25 @@ export default function Navbar() {
 
           {session ? (
             <>
-              <Button variant="secondary" size="icon" aria-label="Wishlist">
-                <FaHeart className="h-8 w-8" />
-              </Button>
-              <Button variant="secondary" size="icon" aria-label="Cart">
-                <IoCart className="h-8 w-8" />
-              </Button>
               <div className="relative w-10 h-10 ">
-                <Image
-                  src={session.user.image}
-                  alt={session.user.name}
-                  fill
-                  className="object-cover rounded-full"
-                  priority
-                  sizes="(max-width: 768px) 100vw , 48vw"
-                />
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <Image
+                      src={session.user.image}
+                      alt={session.user.name}
+                      fill
+                      className="object-cover  rounded-full"
+                      priority
+                      sizes="(max-width: 768px) 100vw , 48vw"
+                    />
+                  </SheetTrigger>
+                  <SheetContent className="w-full px-6 py-6">
+                    <SheetTitle className="text-3xl font-semibold">
+                      {session.user.name}
+                    </SheetTitle>
+                    {userNav}
+                  </SheetContent>
+                </Sheet>
               </div>
             </>
           ) : (

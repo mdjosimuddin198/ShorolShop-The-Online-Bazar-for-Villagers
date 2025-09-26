@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 const LoginBtn = () => {
   const handleLogin = () => {
     signIn();
-    toast.success("login sucsussfully");
   };
   return (
     <Button size="sm" variant="secondary" onClick={handleLogin}>
