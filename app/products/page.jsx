@@ -68,7 +68,7 @@ const Products = () => {
         </div>
       )}
 
-      <h2 className="text-4xl text-center text-secondary font-semibold py-4">
+      <h2 className="text-4xl text-center text-secondary font-semibold py-10">
         Explore Our Products
       </h2>
 

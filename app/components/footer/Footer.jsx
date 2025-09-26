@@ -57,8 +57,11 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link href="/signup" className=" flex items-center gap-2">
-                <FaEnvelope /> Sign Up
+              <Link
+                href="/api/auth/register"
+                className=" flex items-center gap-2"
+              >
+                <FaEnvelope /> Register Now
               </Link>
             </li>
           </ul>

@@ -28,7 +28,9 @@ const WhyChooseUs = () => {
   return (
     <section className="py-10 ">
       <div className=" text-center">
-        <h2 className="text-3xl font-bold mb-6">Why Choose Us</h2>
+        <h2 className="text-3xl text-secondary font-bold mb-6">
+          Why Choose Us
+        </h2>
         <p className="text-gray-600 mb-10">
           We provide the best services to make your shopping experience smooth
           and enjoyable.
@@ -38,7 +40,7 @@ const WhyChooseUs = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center text-center hover:shadow-xl transition"
+              className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-xl transition"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="font-semibold text-xl mb-2">{feature.title}</h3>
