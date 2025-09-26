@@ -7,6 +7,7 @@ import axios from "axios";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import LoginBtn from "@/app/components/actions/LoginBtn";
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
   // using plain JavaScript only, no TypeScript
@@ -23,16 +24,15 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // api call to save user data
-    // console.log("User Registered:", formData);
     await axios
       .post("http://localhost:3000/api/auth/user", formData)
       .then((res) => {
         console.log("user data save done ", res);
-        alert("user created succssfully");
+        toast.success("user created succssfully");
       })
       .catch((err) => {
         console.log(err);
+        toast.error("user create failed");
       });
   };
 

@@ -1,5 +1,4 @@
 import dbConnect from "@/lib/database/db";
-import DammyData from "@/public/DammyData.json";
 import { ObjectId } from "mongodb";
 
 const collection = await dbConnect("ShorolShop_products");

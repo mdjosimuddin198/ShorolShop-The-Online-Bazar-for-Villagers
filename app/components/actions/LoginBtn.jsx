@@ -1,18 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
-import { FaEnvelope } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const LoginBtn = () => {
-  const session = useSession();
+  const handleLogin = () => {
+    signIn();
+    toast.success("login sucsussfully");
+  };
   return (
-    <Button
-      size="sm"
-      variant="secondary"
-      onClick={() => {
-        signIn();
-      }}
-    >
+    <Button size="sm" variant="secondary" onClick={handleLogin}>
       Log In
     </Button>
   );

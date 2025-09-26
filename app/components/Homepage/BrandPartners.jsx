@@ -61,6 +61,7 @@ export default function BrandPartners() {
                   fill
                   className="object-cover rounded-2xl"
                   priority
+                  sizes="(max-width: 768px) 100vw , 48vw"
                 />
               </CardContent>
             </Card>

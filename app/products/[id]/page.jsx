@@ -1,18 +1,9 @@
 "use client";
+import BuyNowModal from "@/app/components/buyNowModal/BuyNowModal";
 import ProductDetailsLoading from "@/app/components/Loading/ProductDetailsLoading";
 // import getProduct from "@/hook/getProduct";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import getProduct from "@/hook/getProduct";
-import { DialogTitle } from "@radix-ui/react-dialog";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -175,80 +166,11 @@ const ProductDetails = () => {
                 +
               </Button>
             </div>
-            <div className="">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button variant="secondary">Order Now</Button>
-                </DialogTrigger>
-
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle className="text-secondary font-semibold text-xl text-center">
-                      Please Fill Out This From
-                    </DialogTitle>
-                  </DialogHeader>
-                  <div className="flex items-center gap-3  justify-evenly">
-                    <div className="w-20 relative h-20">
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        priority
-                        className="rounded-md "
-                        // sizes="(max-width: 768px) 100vw , 48vw"
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <h2 className="font-semibold">{product.title}</h2>
-                      <h2 className=" ">
-                        Product Price :
-                        <span className="text-secondary font-semibold">
-                          {" "}
-                          {product.newPrice}
-                        </span>
-                      </h2>
-                      <p>
-                        Quantity:
-                        <span className="text-secondary font-semibold">
-                          {" "}
-                          {quantity}
-                        </span>
-                      </p>
-                      <p>
-                        Total Price:
-                        <span className="text-secondary font-semibold">
-                          {" "}
-                          {totalPrice}
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-4">
-                    <Input
-                      placeholder="Enter Your Name"
-                      className="w-full h-8  "
-                    />
-                    <Input value="32" className="w-full h-8  " readOnly />
-                    <Textarea
-                      placeholder="Enter Your Address"
-                      className="w-full h-8  "
-                    />
-                    <Input
-                      placeholder="Enter Your Number "
-                      className="w-full h-8  "
-                      type="number"
-                    />
-                  </div>
-
-                  <DialogFooter>
-                    <Button variant="secondary" className="cursor-pointer">
-                      Confrim Process
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </div>
+            <BuyNowModal
+              totalPrice={totalPrice}
+              quantity={quantity}
+              product={product}
+            />
           </div>
         </div>
       </div>

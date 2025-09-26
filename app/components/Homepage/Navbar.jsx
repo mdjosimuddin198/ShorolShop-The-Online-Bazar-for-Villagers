@@ -15,11 +15,14 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import LoginBtn from "../actions/LoginBtn";
 import RegisterBtn from "../actions/RegisterBtn";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const { data: session, status } = useSession();
-  console.log("session for user info ", session);
-  console.log("hello status", status);
+  const handleSignOut = () => {
+    signOut();
+    toast.success("sign Out succssFully");
+  };
   const navlink = (
     <>
       <Link href="/" className="flex items-center gap-2">
@@ -32,7 +35,7 @@ export default function Navbar() {
       <Link href="/about" className="flex items-center gap-2">
         <FaInfoCircle /> About
       </Link>
-      {session && <Button onClick={() => signOut()}>Sign Out</Button>}
+      {session && <Button onClick={handleSignOut}>Sign Out</Button>}
     </>
   );
   return (
@@ -72,6 +75,7 @@ export default function Navbar() {
                   fill
                   className="object-cover rounded-full"
                   priority
+                  sizes="(max-width: 768px) 100vw , 48vw"
                 />
               </div>
             </>
