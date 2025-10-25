@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "motion/react";
 import React from "react";
 
 const WhyChooseUs = () => {
@@ -28,9 +29,20 @@ const WhyChooseUs = () => {
   return (
     <section className="py-10 ">
       <div className=" text-center">
-        <h2 className="text-3xl text-secondary font-bold mb-6">
+        <motion.h2
+          initial={{ scale: [0, 0, 0] }}
+          whileInView={{ scale: [0.5, 0.75, 1] }}
+          viewport={{ amount: 0.6 }}
+          transition={{
+            duration: 2,
+            // repeat: Infinity,
+            repeatType: "loop",
+            ease: "easeIn",
+          }}
+          className="text-3xl text-secondary font-bold mb-6"
+        >
           Why Choose Us
-        </h2>
+        </motion.h2>
         <p className="text-gray-600 mb-10">
           We provide the best services to make your shopping experience smooth
           and enjoyable.
@@ -38,14 +50,24 @@ const WhyChooseUs = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, amount: 0.6, margin: "-50px" }}
+              transition={{
+                duration: 0.6,
+                ease: "easeIn",
+                type: "spring",
+                stiffness: 120,
+                damping: 20,
+              }}
               key={index}
               className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center text-center hover:scale-105 hover:shadow-xl transition"
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="font-semibold text-xl mb-2">{feature.title}</h3>
               <p className="text-gray-600 text-sm">{feature.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -7,7 +7,7 @@ import React from "react";
 const RegisterBtn = () => {
   return (
     <Button variant="secondary" size="sm">
-      <Link href="/api/auth/register">Register</Link>
+      <Link href="/register">Register</Link>
     </Button>
   );
 };

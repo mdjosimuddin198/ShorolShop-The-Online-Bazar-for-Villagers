@@ -51,6 +51,7 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
       totalPrice,
       phone,
       address,
+      status: "pending",
     };
     mutation.mutate(MyOrderProduct);
   };
@@ -71,7 +72,7 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
           <div className="flex items-center gap-3  justify-evenly">
             <div className="w-20 relative h-20">
               <Image
-                src={product.image}
+                src={product.images?.[1]}
                 alt={product.title}
                 fill
                 priority
@@ -108,13 +109,13 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
           <form className="flex flex-col gap-4">
             <Input
               placeholder="Enter Your Name"
-              value={session.user.name}
+              value={session?.user?.name}
               className="w-full h-8 cursor-not-allowed "
               readOnly
             />
             <Input
               placeholder="Enter Your email"
-              value={session.user.email}
+              value={session?.user?.email}
               className="w-full h-8 cursor-not-allowed "
               readOnly
             />
@@ -127,14 +128,20 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
               placeholder="Enter Your Address"
               className="w-full h-8  "
               onChange={(e) => setAddress(e.target.value)}
+              required
             />
+
             <Input
               placeholder="Enter Your Number "
               className="w-full h-8  "
               type="number"
               onChange={(e) => setPhone(e.target.value)}
+              required
             />
-            <Badge variant="primary">
+            <Badge
+              variant="primary"
+              className="bg-gradient-to-l from-primary to-secondary text-white"
+            >
               Only Cashon Delevery Are Available Now
             </Badge>
           </form>

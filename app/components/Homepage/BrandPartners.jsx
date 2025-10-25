@@ -1,5 +1,6 @@
 "use client";
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
 export default function BrandPartners() {
@@ -41,9 +42,20 @@ export default function BrandPartners() {
   return (
     <section className="py-16 bg-white dark:bg-gray-900">
       <div className="max-w-6xl mx-auto text-center px-4">
-        <p className="text-2xl md:text-3xl  font-semibold text-secondary  tracking-wide">
+        <motion.h2
+          initial={{ scale: [0, 0, 0] }}
+          whileInView={{ scale: [0.5, 0.75, 1] }}
+          viewport={{ amount: 0.6 }}
+          transition={{
+            duration: 2,
+            // repeat: Infinity,
+            repeatType: "loop",
+            ease: "easeIn",
+          }}
+          className="text-4xl text-center text-secondary font-semibold py-10"
+        >
           Our Partners
-        </p>
+        </motion.h2>
         <h2 className="text-sm text-gray-900 dark:text-white mt-2">
           We work with the best partners
         </h2>

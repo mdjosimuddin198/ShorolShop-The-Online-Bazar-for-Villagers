@@ -1,18 +1,19 @@
 import dbConnect from "@/lib/database/db";
-const collection = await dbConnect("UserCollection");
 import bcrypt from "bcrypt";
 
-export const GET = async (user) => {
+export const GET = async () => {
   try {
-    const res = await collection.findOne({ user });
+    const collection = await dbConnect("UserCollection");
+    const res = await collection.find().toArray();
     return new Response(JSON.stringify(res));
-  } catch (error) {
-    throw new Error("error find check it again", error);
+  } catch (err) {
+    throw new Error("error find check it again ", err);
   }
 };
 
 export const POST = async (req) => {
   try {
+    const collection = await dbConnect("UserCollection");
     const { name, email, password, image } = await req.json();
 
     const hashedPassword = await bcrypt.hash(password, 10);

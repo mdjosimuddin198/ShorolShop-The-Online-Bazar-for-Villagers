@@ -3,64 +3,52 @@ import Link from "next/link";
 import { Button } from "../../../components/ui/button";
 import { FaBox, FaHeart, FaHome, FaInfoCircle } from "react-icons/fa";
 import { IoCart, IoMenu } from "react-icons/io5";
+import { MdDashboard } from "react-icons/md";
 import {
   Sheet,
   SheetContent,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-
 import { useSession, signIn, signOut } from "next-auth/react";
 import LoginBtn from "../actions/LoginBtn";
 import RegisterBtn from "../actions/RegisterBtn";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { usePathname, useRouter } from "next/navigation";
+import { motion } from "motion/react";
 
 export default function Navbar() {
+  const path = usePathname();
+  const router = useRouter();
   const { data: session, status } = useSession();
   const handleSignOut = () => {
     signOut();
-    toast.success("sign Out succssFully");
+    toast.success("See you soon! You’ve logged out");
   };
-  const navlink = (
-    <>
-      <Link href="/" className="flex items-center gap-2 hover:text-secondary">
-        <FaHome />
-        Home
-      </Link>
-      <Link
-        href="/products"
-        className="flex items-center gap-2 hover:text-secondary"
-      >
-        <FaBox /> Products
-      </Link>
-      <Link
-        href="/about"
-        className="flex items-center gap-2 hover:text-secondary"
-      >
-        <FaInfoCircle /> About
-      </Link>
-    </>
-  );
+  const isActive = (href) =>
+    path === href ? "text-secondary font-semibold" : "";
 
-  const userNav = (
-    <>
-      <Link href="/myorder" className="flex  items-center gap-2">
-        <IoCart className="h-8 w-8" />
-        My Order
-      </Link>
-      <Link href="/myorder" className="flex  items-center gap-2">
-        <FaHeart className="h-8 w-8" />
-        Wish List
-      </Link>
+  const navItems = [
+    { href: "/", label: "Home", icon: <FaHome /> },
+    { href: "/products", label: "Products", icon: <FaBox /> },
+    { href: "/about", label: "About", icon: <FaInfoCircle /> },
+    { href: "/myorder", label: "My Order", icon: <IoCart /> },
+  ];
 
-      {session && (
-        <Button className="mt-8" onClick={handleSignOut}>
-          Sign Out
-        </Button>
-      )}
-    </>
-  );
+  const navLinks = navItems.map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      className={`flex items-center gap-2 hover:text-secondary ${isActive(
+        item.href
+      )}`}
+    >
+      {item.icon}
+      {item.label}
+    </Link>
+  ));
+
   return (
     <header className="w-11/12 mx-auto top-0 z-50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="mx-auto max-w-7xl h-16 px-4 flex items-center justify-between">
@@ -69,42 +57,34 @@ export default function Navbar() {
           ShorolShop
         </Link>
 
-        {/* Desktop links */}
-        <nav className="hidden md:flex items-center gap-6">{navlink}</nav>
+        {/* Desktop view */}
+        <nav className="hidden md:flex items-center gap-6">{navLinks}</nav>
 
         {/* Right side */}
         <div className="flex  items-center gap-2">
-          {/* Search (desktop) */}
-          {/* <div className="relative hidden md:block">
-            <Input
-              placeholder="What are you looking for?"
-              className="w-64 pr-10"
-            />
-            <f className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          </div> */}
-
           {session ? (
             <>
-              <div className="relative w-10 h-10 ">
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <Image
-                      src={session.user.image}
-                      alt={session.user.name}
-                      fill
-                      className="object-cover  rounded-full"
-                      priority
-                      sizes="(max-width: 768px) 100vw , 48vw"
-                    />
-                  </SheetTrigger>
-                  <SheetContent className="w-full px-6 py-6">
-                    <SheetTitle className="text-3xl font-semibold">
-                      {session.user.name}
-                    </SheetTitle>
-                    {userNav}
-                  </SheetContent>
-                </Sheet>
-              </div>
+              <p className="hidden md:block">{session.user.name}</p>
+              <motion.div
+                whileHover={{ scale: 1.1 }}
+                className="relative w-10 h-10 "
+              >
+                <Image
+                  src={session.user.image}
+                  alt={session.user.name}
+                  onClick={handleSignOut}
+                  fill
+                  className="object-cover  rounded-full"
+                  priority
+                  sizes="(max-width: 768px) 100vw , 48vw"
+                />
+              </motion.div>
+              <MdDashboard
+                onClick={() => {
+                  router.push("/overview");
+                }}
+                className="w-8 h-8 cursor-pointer"
+              />
             </>
           ) : (
             <>
@@ -127,21 +107,12 @@ export default function Navbar() {
             </SheetTrigger>
 
             <SheetContent side="top" className="w-full px-6 py-6 ">
-              <SheetTitle className="font-bold">SwifMart</SheetTitle>
+              <SheetTitle className="font-bold">ShorolShop</SheetTitle>
+              {/* navItems  */}
               <nav className="grid gap-4">
-                {navlink}
-                {/* <div className="mt-4">
-                  <div className="relative">
-                    <Input placeholder="Search…" className="pr-10" />
-                    <FaSearch className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                  </div>
-                </div> */}
+                {navLinks}
+                {/* if user exits   */}
                 {session ? (
-                  <>
-                    <LoginBtn />
-                    <RegisterBtn />
-                  </>
-                ) : (
                   <>
                     <Button
                       variant="secondary"
@@ -153,6 +124,11 @@ export default function Navbar() {
                     <Button variant="secondary" size="icon" aria-label="Cart">
                       <IoCart className="h-8 w-8" />
                     </Button>
+                  </>
+                ) : (
+                  <>
+                    <LoginBtn />
+                    <RegisterBtn />
                   </>
                 )}
               </nav>

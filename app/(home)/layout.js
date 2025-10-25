@@ -1,10 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-import NextAuthSessionProvider from "../provider/NextAuthSessionProvider";
-import Navbar from "./components/Homepage/Navbar";
-import Footer from "./components/footer/Footer";
-import QueryProvider from "./components/queryProvider/QueryProvider";
+import "@/app/globals.css";
+import NextAuthSessionProvider from "@/provider/NextAuthSessionProvider";
+import Navbar from "../components/Homepage/Navbar";
+import QueryProvider from "../components/queryProvider/QueryProvider";
+import Footer from "../components/footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +23,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <NextAuthSessionProvider>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
-        >
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+      >
+        <NextAuthSessionProvider>
           <header className="sticky  top-0 z-10">
             <Navbar />
           </header>
@@ -38,8 +37,8 @@ export default function RootLayout({ children }) {
           <footer className="w-11/12 mx-auto">
             <Footer />
           </footer>
-        </body>
-      </NextAuthSessionProvider>
+        </NextAuthSessionProvider>
+      </body>
     </html>
   );
 }

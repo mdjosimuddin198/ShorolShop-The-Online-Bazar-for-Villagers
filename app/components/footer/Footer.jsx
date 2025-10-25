@@ -1,3 +1,4 @@
+"use client";
 import {
   FaHome,
   FaBox,
@@ -10,8 +11,15 @@ import { AiOutlineMail } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 const Footer = () => {
+  const navItems = [
+    { name: "Home", path: "/", icon: <FaHome /> },
+    { name: "Products", path: "/products", icon: <FaBox /> },
+    { name: "About", path: "/about", icon: <FaInfoCircle /> },
+    { name: "Register Now", path: "/api/auth/register", icon: <FaEnvelope /> },
+  ];
   return (
     <footer className=" my-6 rounded-2xl py-12">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 px-6">
@@ -41,29 +49,21 @@ const Footer = () => {
         <div>
           <h3 className=" font-semibold mb-6">Quick Links</h3>
           <ul className="space-y-3">
-            <li>
-              <Link href="/" className=" flex items-center gap-2">
-                <FaHome /> Home
-              </Link>
-            </li>
-            <li>
-              <Link href="/products" className=" flex items-center gap-2">
-                <FaBox /> Products
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" className=" flex items-center gap-2">
-                <FaInfoCircle /> About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/api/auth/register"
-                className=" flex items-center gap-2"
+            {navItems.map((item, index) => (
+              <motion.li
+                whileHover={{ x: 5 }}
+                key={index}
+                className="group flex md:w-[150px] hover:text-secondary items-center gap-2 py-2 transition-all duration-300"
               >
-                <FaEnvelope /> Register Now
-              </Link>
-            </li>
+                <span className="block w-0 h-[2px] bg-secondary transition-all duration-300 group-hover:w-4"></span>
+                {item.icon}
+                <span className="flex items-center gap-2 relative">
+                  {item.name}
+
+                  {/* Small line at right side */}
+                </span>
+              </motion.li>
+            ))}
           </ul>
         </div>
 
@@ -75,7 +75,11 @@ const Footer = () => {
             exclusive offers.
           </p>
           <div className="flex flex-col gap-2">
-            <Input type="email" placeholder="Please Enter your email" />
+            <Input
+              type="email"
+              required
+              placeholder="Please Enter your email"
+            />
             <Button variant="ghost" className=" ">
               Subscribe
             </Button>

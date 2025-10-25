@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useSession, signIn, signOut } from "next-auth/react";
 import React from "react";
-import { toast } from "react-toastify";
 
 const LoginBtn = () => {
   const handleLogin = () => {

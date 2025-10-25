@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 
 const Hero = () => {
   const slides = [
@@ -27,7 +27,10 @@ const Hero = () => {
   ];
 
   return (
-    <section className="bg-transparent text-center text-white  ">
+    <motion.section
+      animate={{}}
+      className="bg-transparent text-center text-white  "
+    >
       <Swiper
         modules={[Autoplay, Pagination]}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
@@ -50,19 +53,35 @@ const Hero = () => {
 
               {/* Content */}
               <div className="relative z-10 max-w-3xl px-4">
-                <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+                <motion.h1
+                  initial={{ x: 90, opacity: 0.2 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="text-4xl md:text-6xl font-extrabold leading-tight"
+                >
                   {slide.title}
-                </h1>
-                <p className="mt-4 text-lg md:text-xl text-gray-100">
+                </motion.h1>
+                <motion.p
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="mt-4 text-lg md:text-xl text-gray-100"
+                >
                   {slide.desc}
-                </p>
+                </motion.p>
 
                 {/* Buttons */}
                 <div className="mt-6 flex flex-wrap justify-center gap-4">
-                  <Button className="cursor-pointer" variant="ghost">
+                  <Button
+                    className="cursor-pointer hover:scale-105"
+                    variant="ghost"
+                  >
                     Shop Now
                   </Button>
-                  <Button className="cursor-pointer" variant="secondary">
+                  <Button
+                    className="cursor-pointer hover:scale-105"
+                    variant="secondary"
+                  >
                     View Offer
                   </Button>
                 </div>
@@ -71,7 +90,7 @@ const Hero = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </section>
+    </motion.section>
   );
 };
 

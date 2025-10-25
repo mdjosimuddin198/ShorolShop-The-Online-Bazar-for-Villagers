@@ -2,6 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay, Pagination } from "swiper/modules";
+import { motion } from "motion/react";
 
 const CustomarReview = () => {
   const testimonials = [
@@ -50,9 +51,21 @@ const CustomarReview = () => {
   return (
     <section className="py-10">
       <div className="text-center">
-        <h2 className="text-3xl font-bold text-secondary mb-6">
+        <motion.h2
+          initial={{ scale: [0, 0, 0] }}
+          whileInView={{ scale: [0.5, 0.75, 1] }}
+          viewport={{ amount: 0.6 }}
+          transition={{
+            duration: 2,
+            // repeat: Infinity,
+            repeatType: "loop",
+            ease: "easeIn",
+          }}
+          className="text-4xl text-center text-secondary font-semibold py-10"
+        >
           Customer Testimonials
-        </h2>
+        </motion.h2>
+
         <p className="text-gray-600 mb-10">
           Hear what our happy customers have to say about us.
         </p>

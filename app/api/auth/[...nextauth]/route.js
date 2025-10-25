@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import dbConnect from "@/lib/database/db";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { signIn } from "next-auth/react";
+
 // josimuddin0505
 export const authOptions = {
   providers: [
@@ -43,6 +43,7 @@ export const authOptions = {
             name: userInfo.name,
             email: userInfo.email,
             image: userInfo.image,
+            role: userInfo.role,
           };
         } catch (error) {
           console.error("Authorize error:", error);
@@ -56,6 +57,21 @@ export const authOptions = {
   },
   session: {
     strategy: "jwt",
+  },
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role; // 🟡 role token এ সেট করো
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id;
+      session.user.role = token.role; // 🟡 session এ role সেট করো
+      return session;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

@@ -6,10 +6,10 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import ProductsLoading from "../components/Loading/ProductsLoading";
-import ProductCard from "../components/productCard/ProductCard";
+import ProductsLoading from "../../components/Loading/ProductsLoading";
+import ProductCard from "../../components/productCard/ProductCard";
 import getProducts from "@/hook/getProducts";
-import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 const Products = () => {
   const router = useRouter();
   const [searchItem, setSerchItem] = useState("");
@@ -25,7 +25,11 @@ const Products = () => {
   } = useQuery({
     queryKey: ["products"],
     queryFn: () => {
-      return getProducts("api/products");
+      if (pathname === "/") {
+        return getProducts("api/products", 8);
+      } else {
+        return getProducts("api/products");
+      }
     },
   });
 
@@ -33,7 +37,7 @@ const Products = () => {
   if (isLoading) {
     return (
       <div className="grid py-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 8 }).map((_, i) => (
           <ProductsLoading key={i} />
         ))}
       </div>
@@ -41,7 +45,7 @@ const Products = () => {
   }
 
   if (error) {
-    return <p>error found...</p>;
+    return <p>error found... {error}</p>;
   }
 
   // serch products by title
@@ -68,9 +72,20 @@ const Products = () => {
         </div>
       )}
 
-      <h2 className="text-4xl text-center text-secondary font-semibold py-10">
+      <motion.h2
+        initial={{ scale: [0, 0, 0] }}
+        whileInView={{ scale: [0.5, 0.75, 1] }}
+        viewport={{ amount: 0.6 }}
+        transition={{
+          duration: 2,
+          // repeat: Infinity,
+          repeatType: "loop",
+          ease: "easeIn",
+        }}
+        className="text-4xl text-center text-secondary font-semibold py-10"
+      >
         Explore Our Products
-      </h2>
+      </motion.h2>
 
       <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7  py-4  gap-3 ">
         <button
@@ -84,7 +99,11 @@ const Products = () => {
           All
         </button>
         {catagories.map((product, i) => (
-          <button
+          <motion.button
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.6 }}
+            transition={{ duration: 1, ease: "easeIn" }}
             key={i}
             onClick={() => {
               SetFillterdByCatagory(product);
@@ -98,7 +117,7 @@ const Products = () => {
              }`}
           >
             {product}
-          </button>
+          </motion.button>
         ))}
       </div>
 

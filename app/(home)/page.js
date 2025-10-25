@@ -1,9 +1,10 @@
 import React from "react";
+
+import WhyChooseUs from "../components/Homepage/WhyChooseUs";
 import Products from "./products/page";
-import Hero from "./components/Homepage/Hero";
-import WhyChooseUs from "./components/Homepage/WhyChooseUs";
-import CustomarReview from "./components/Homepage/CustomarReview";
-import BrandPartners from "./components/Homepage/BrandPartners";
+import CustomarReview from "../components/Homepage/CustomarReview";
+import BrandPartners from "../components/Homepage/BrandPartners";
+import Hero from "../components/Homepage/Hero";
 
 const Home = () => {
   return (

@@ -1,158 +1,386 @@
 [
   {
-    "title": "Classy Modern Smart Watch",
-    "reviews": 2,
-    "oldPrice": 99.0,
-    "newPrice": 79.0,
-    "description": "Stay connected and track your health with this classy modern smartwatch.",
-    "type": "Watch",
-    "model": "Forerunner 290XT",
-    "category": "Wearables",
-    "colors": ["teal", "purple", "black"],
-    "sizes": ["S", "M", "L", "XL"],
-    "image": "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg"
-  },
-  {
     "title": "Stylish Fitness Tracker",
-    "reviews": 5,
-    "oldPrice": 120.0,
-    "newPrice": 89.0,
+    "oldPrice": 1260,
+    "newPrice": 999,
     "description": "Track your steps, heart rate, and calories with this advanced fitness tracker.",
     "type": "Fitness Band",
     "model": "FitPro X200",
     "category": "Wearables",
-    "colors": ["blue", "black"],
     "sizes": ["M", "L"],
-    "image": "https://images.pexels.com/photos/4379290/pexels-photo-4379290.jpeg"
-  },
-  {
-    "title": "Wireless Bluetooth Earbuds",
-    "reviews": 15,
-    "oldPrice": 150.0,
-    "newPrice": 99.0,
-    "description": "High-quality wireless earbuds with noise cancellation and long battery life.",
-    "type": "Earbuds",
-    "model": "AirBeats Pro",
-    "category": "Audio",
-    "colors": ["white", "black"],
-    "sizes": [],
-    "image": "https://images.pexels.com/photos/3585797/pexels-photo-3585797.jpeg"
+    "images": [
+      "https://images.pexels.com/photos/4379290/pexels-photo-4379290.jpeg",
+      "https://i.pinimg.com/736x/6b/87/3a/6b873a4a6e0ec6efe8252be0ba2c998e.jpg",
+      "https://i.pinimg.com/736x/5d/2f/48/5d2f4841c9dbcf7b146b6086e3213808.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Emma Watson",
+        "useimage": "https://randomuser.me/api/portraits/women/45.jpg",
+        "review_message": "I love the FitPro X200! The heart rate monitor is very accurate and it motivates me to walk more."
+      },
+      {
+        "name": "Liam Johnson",
+        "useimage": "https://randomuser.me/api/portraits/men/32.jpg",
+        "review_message": "Stylish Fitness Tracker looks great and tracks my steps perfectly. Battery lasts long too!"
+      },
+      {
+        "name": "Sophia Lee",
+        "useimage": "https://randomuser.me/api/portraits/women/68.jpg",
+        "review_message": "Good product overall. I like how the FitPro X200 reminds me to stay active throughout the day."
+      }
+    ]
   },
   {
     "title": "Gaming Headset",
-    "reviews": 12,
-    "oldPrice": 80.0,
-    "newPrice": 59.0,
+    "oldPrice": 1890,
+    "newPrice": 1490,
     "description": "Experience immersive sound quality with this comfortable gaming headset.",
     "type": "Headset",
     "model": "GX-500",
     "category": "Audio",
-    "colors": ["black", "red"],
     "sizes": [],
-    "image": "https://images.unsplash.com/photo-1673669236244-60f764c15f27"
+    "images": [
+      "https://i.pinimg.com/1200x/55/ff/44/55ff44650711ea60c9e7c17f9927cc3a.jpg",
+      "https://i.pinimg.com/736x/d7/cd/ec/d7cdec94bb1a046f03e1ac36fbd7b7f6.jpg",
+      "https://i.pinimg.com/736x/2e/bb/ae/2ebbaeae17a0752a10f4d4732f5458d8.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Noah Smith",
+        "useimage": "https://randomuser.me/api/portraits/men/44.jpg",
+        "review_message": "The GX-500 headset has amazing sound quality. Great for gaming marathons."
+      },
+      {
+        "name": "Olivia Brown",
+        "useimage": "https://randomuser.me/api/portraits/women/22.jpg",
+        "review_message": "Comfortable to wear for long hours. The Gaming Headset really enhances the immersive experience."
+      },
+      {
+        "name": "Ethan Davis",
+        "useimage": "https://randomuser.me/api/portraits/men/50.jpg",
+        "review_message": "Good value for the price. Clear audio and decent bass. Perfect for online games."
+      }
+    ]
   },
   {
     "title": "4K Action Camera",
-    "reviews": 9,
-    "oldPrice": 220.0,
-    "newPrice": 179.0,
+    "oldPrice": 2220,
+    "newPrice": 1599,
     "description": "Capture your adventures in stunning 4K with waterproof action camera.",
     "type": "Camera",
     "model": "ActionCam 4K",
     "category": "Cameras",
-    "colors": ["black"],
     "sizes": [],
-    "image": "https://images.pexels.com/photos/26347764/pexels-photo-26347764.jpeg"
-  },
-  {
-    "title": "Portable Bluetooth Speaker",
-    "reviews": 18,
-    "oldPrice": 70.0,
-    "newPrice": 49.0,
-    "description": "Enjoy high-quality music anywhere with this portable Bluetooth speaker.",
-    "type": "Speaker",
-    "model": "SoundGo Mini",
-    "category": "Audio",
-    "colors": ["blue", "black", "red"],
-    "sizes": [],
-    "image": "https://images.pexels.com/photos/18542243/pexels-photo-18542243.jpeg"
+    "images": [
+      "https://i.pinimg.com/1200x/49/9f/42/499f424cbee31612ef22d32ceb94476f.jpg",
+      "https://i.pinimg.com/736x/8a/df/2c/8adf2c3b7491586535629cb898aa5710.jpg",
+      "https://i.pinimg.com/1200x/58/35/84/58358483f2d11c23fa5c9720a76308bb.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Ava Wilson",
+        "useimage": "https://randomuser.me/api/portraits/women/33.jpg",
+        "review_message": "ActionCam 4K is amazing for my hiking trips. The video quality is crystal clear!"
+      },
+      {
+        "name": "Lucas Martinez",
+        "useimage": "https://randomuser.me/api/portraits/men/27.jpg",
+        "review_message": "Waterproof and sturdy. Perfect for underwater adventures. Highly recommend this 4K Action Camera."
+      },
+      {
+        "name": "Mia Thompson",
+        "useimage": "https://randomuser.me/api/portraits/women/14.jpg",
+        "review_message": "I am impressed by the image stabilization. Makes my sports videos look professional."
+      }
+    ]
   },
   {
     "title": "Smartphone Tripod",
-    "reviews": 7,
-    "oldPrice": 40.0,
-    "newPrice": 25.0,
+    "oldPrice": 2800,
+    "newPrice": 2200,
     "description": "Adjustable tripod stand for smartphones with 360-degree rotation.",
     "type": "Tripod",
     "model": "FlexiStand X",
     "category": "Accessories",
-    "colors": ["black"],
     "sizes": [],
-    "image": "https://images.pexels.com/photos/1629200/pexels-photo-1629200.jpeg"
-  },
-  {
-    "title": "DSLR Camera",
-    "reviews": 11,
-    "oldPrice": 850.0,
-    "newPrice": 749.0,
-    "description": "Professional DSLR camera with high resolution and interchangeable lenses.",
-    "type": "Camera",
-    "model": "Canon XT-500",
-    "category": "Cameras",
-    "colors": ["black"],
-    "sizes": [],
-    "image": "https://images.pexels.com/photos/1292770/pexels-photo-1292770.jpeg"
+    "images": [
+      "https://i.pinimg.com/1200x/1c/83/cc/1c83ccf71c4e3d4132447c97bde49cfc.jpg",
+      "https://i.pinimg.com/736x/c3/a1/80/c3a180fe7d63e5f655e349731c038622.jpg",
+      "https://i.pinimg.com/736x/de/37/13/de371379987f10c432e6729e66bc4596.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "James Anderson",
+        "useimage": "https://randomuser.me/api/portraits/men/12.jpg",
+        "review_message": "FlexiStand X is solid and easy to adjust. Great for filming TikTok videos!"
+      },
+      {
+        "name": "Isabella Scott",
+        "useimage": "https://randomuser.me/api/portraits/women/19.jpg",
+        "review_message": "Love how stable this tripod is. The rotation feature makes it easy to get the perfect angle."
+      },
+      {
+        "name": "Benjamin Garcia",
+        "useimage": "https://randomuser.me/api/portraits/men/34.jpg",
+        "review_message": "Perfect for smartphone photography. Sturdy, compact, and easy to carry."
+      }
+    ]
   },
   {
     "title": "Wireless Keyboard & Mouse",
-    "reviews": 10,
-    "oldPrice": 65.0,
-    "newPrice": 49.0,
+    "oldPrice": 1000,
+    "newPrice": 850,
     "description": "Slim and stylish wireless keyboard with ergonomic mouse combo.",
     "type": "Accessories",
     "model": "KeyMouse Combo",
     "category": "Accessories",
-    "colors": ["black", "white"],
     "sizes": [],
-    "image": "https://images.unsplash.com/photo-1550009158-9ebf69173e03"
-  },
-  {
-    "title": "Curved Gaming Monitor",
-    "reviews": 14,
-    "oldPrice": 450.0,
-    "newPrice": 379.0,
-    "description": "32-inch curved gaming monitor with ultra-smooth refresh rate.",
-    "type": "Monitor",
-    "model": "CurveX 32",
-    "category": "Monitors",
-    "colors": ["black"],
-    "sizes": [],
-    "image": "https://images.pexels.com/photos/30836160/pexels-photo-30836160.jpeg"
+    "images": [
+      "https://i.pinimg.com/1200x/b9/da/73/b9da731ea035214c50945b60cc4037c0.jpg",
+      "https://i.pinimg.com/736x/06/dd/0e/06dd0ea4185f51b426c73aef49536784.jpg",
+      "https://i.pinimg.com/1200x/71/06/e2/7106e2a33b912aca6357a23a62d3f056.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Charlotte King",
+        "useimage": "https://randomuser.me/api/portraits/women/41.jpg",
+        "review_message": "KeyMouse Combo is sleek and works flawlessly. The wireless range is excellent."
+      },
+      {
+        "name": "Henry Lewis",
+        "useimage": "https://randomuser.me/api/portraits/men/20.jpg",
+        "review_message": "I like the design and typing feel. Great value for this wireless keyboard and mouse."
+      },
+      {
+        "name": "Amelia Hall",
+        "useimage": "https://randomuser.me/api/portraits/women/37.jpg",
+        "review_message": "Setup was simple. I’m using the KeyMouse Combo for work and gaming. Very satisfied."
+      }
+    ]
   },
   {
     "title": "Mechanical Gaming Keyboard",
-    "reviews": 20,
-    "oldPrice": 110.0,
-    "newPrice": 89.0,
+    "oldPrice": 1500,
+    "newPrice": 1050,
     "description": "RGB backlit mechanical keyboard for the ultimate gaming experience.",
     "type": "Keyboard",
     "model": "Mecha Pro X",
     "category": "Accessories",
-    "colors": ["black", "white"],
     "sizes": [],
-    "image": "https://images.unsplash.com/photo-1729501212345-477b92b1ae3a"
+    "images": [
+      "https://i.pinimg.com/1200x/07/3b/ce/073bce9b2c6d2b7beddbaac91ee4dc23.jpg",
+      "https://i.pinimg.com/736x/83/e1/3d/83e13d6fffe8d4496ec762f8ec2aecf6.jpg",
+      "https://i.pinimg.com/736x/c9/74/9c/c9749cbdf970864fc9cefa7033b7535b.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Daniel Wright",
+        "useimage": "https://randomuser.me/api/portraits/men/17.jpg",
+        "review_message": "Mecha Pro X keyboard is solid and feels great for gaming. The RGB lighting is a plus."
+      },
+      {
+        "name": "Grace Lopez",
+        "useimage": "https://randomuser.me/api/portraits/women/28.jpg",
+        "review_message": "Typing is smooth and the keys are very responsive. Highly recommend for gamers."
+      },
+      {
+        "name": "Jack Harris",
+        "useimage": "https://randomuser.me/api/portraits/men/55.jpg",
+        "review_message": "The Mecha Pro X mechanical keyboard makes my setup look amazing. Very sturdy build."
+      }
+    ]
+  },
+  {
+    "title": "Curved Gaming Monitor",
+    "oldPrice": 18050,
+    "newPrice": 12370,
+    "description": "32-inch curved gaming monitor with ultra-smooth refresh rate.",
+    "type": "Monitor",
+    "model": "CurveX 32",
+    "category": "Monitors",
+    "sizes": [],
+    "images": [
+      "https://i.pinimg.com/1200x/f7/c2/0f/f7c20f33a0142e10c5d440afbc14e0bd.jpg",
+      "https://i.pinimg.com/1200x/70/50/6d/70506d908fc05d1227f2bd69ed3f558e.jpg",
+      "https://i.pinimg.com/736x/dc/48/06/dc48068a479203419cfb9d248759d464.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Evelyn Clark",
+        "useimage": "https://randomuser.me/api/portraits/women/11.jpg",
+        "review_message": "CurveX 32 is fantastic! Colors are vibrant and the refresh rate makes gaming so smooth."
+      },
+      {
+        "name": "Alexander Young",
+        "useimage": "https://randomuser.me/api/portraits/men/8.jpg",
+        "review_message": "The curved display really improves my gaming experience. Build quality is top-notch."
+      },
+      {
+        "name": "Lily Allen",
+        "useimage": "https://randomuser.me/api/portraits/women/56.jpg",
+        "review_message": "I enjoy long gaming sessions on the CurveX 32. The ultra-smooth refresh rate is perfect."
+      }
+    ]
+  },
+  {
+    "title": "Classy Modern Smart Watch",
+    "oldPrice": 999,
+    "newPrice": 699,
+    "description": "Stay connected and track your health with this classy modern smartwatch.",
+    "type": "Watch",
+    "model": "Forerunner 290XT",
+    "category": "Wearables",
+    "sizes": ["S", "M", "L", "XL"],
+    "images": [
+      "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
+      "https://i.pinimg.com/736x/d4/6e/46/d46e46854d90a30f04d7d271fe711eed.jpg",
+      "https://i.pinimg.com/1200x/c7/39/2b/c7392ba1c144f7d9e49c851d1808f52f.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Victoria Adams",
+        "useimage": "https://randomuser.me/api/portraits/women/7.jpg",
+        "review_message": "The Forerunner 290XT smartwatch is sleek and stylish. Perfect for daily use."
+      },
+      {
+        "name": "Samuel Baker",
+        "useimage": "https://randomuser.me/api/portraits/men/9.jpg",
+        "review_message": "I like how it tracks my steps and heart rate accurately. Classy Modern Smart Watch is very convenient."
+      },
+      {
+        "name": "Chloe Roberts",
+        "useimage": "https://randomuser.me/api/portraits/women/3.jpg",
+        "review_message": "Battery life is impressive. It keeps me updated without needing constant charging."
+      }
+    ]
+  },
+  {
+    "title": "Wireless Bluetooth Earbuds",
+    "oldPrice": 2550,
+    "newPrice": 1600,
+    "description": "High-quality wireless earbuds with noise cancellation and long battery life.",
+    "type": "Earbuds",
+    "model": "AirBeats Pro",
+    "category": "Audio",
+    "sizes": [],
+    "images": [
+      "https://images.pexels.com/photos/3585797/pexels-photo-3585797.jpeg",
+      "https://i.pinimg.com/1200x/e0/ad/3e/e0ad3ec225c1801ddbad74600ac4b87e.jpg",
+      "https://i.pinimg.com/736x/ba/bf/17/babf171ca89d93cbce4c3aaa256e3dad.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Mason Turner",
+        "useimage": "https://randomuser.me/api/portraits/men/6.jpg",
+        "review_message": "AirBeats Pro earbuds are excellent. Sound is clear and noise cancellation works well."
+      },
+      {
+        "name": "Ella Parker",
+        "useimage": "https://randomuser.me/api/portraits/women/9.jpg",
+        "review_message": "Very comfortable for long listening sessions. The wireless range is good too."
+      },
+      {
+        "name": "Logan Rivera",
+        "useimage": "https://randomuser.me/api/portraits/men/13.jpg",
+        "review_message": "High-quality sound and great battery life. AirBeats Pro is worth the price."
+      }
+    ]
+  },
+  {
+    "title": "Portable Bluetooth Speaker",
+    "oldPrice": 1790,
+    "newPrice": 1290,
+    "description": "Enjoy high-quality music anywhere with this portable Bluetooth speaker.",
+    "type": "Speaker",
+    "model": "SoundGo Mini",
+    "category": "Audio",
+    "sizes": [],
+    "images": [
+      "https://i.pinimg.com/1200x/86/0a/4f/860a4fefabfad0acbc91b1664470550c.jpg",
+      "https://i.pinimg.com/736x/97/a9/63/97a9632db60b13420a76607ce5f40eef.jpg",
+      "https://i.pinimg.com/736x/e5/c7/6b/e5c76bbbf39d8abe4507e98ec3bb21bc.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Victoria Hughes",
+        "useimage": "https://randomuser.me/api/portraits/women/15.jpg",
+        "review_message": "SoundGo Mini delivers clear sound and solid bass. Very portable and easy to carry."
+      },
+      {
+        "name": "Nathan Powell",
+        "useimage": "https://randomuser.me/api/portraits/men/18.jpg",
+        "review_message": "Battery lasts long and the Bluetooth connection is stable. Great for outdoor use."
+      },
+      {
+        "name": "Hannah Foster",
+        "useimage": "https://randomuser.me/api/portraits/women/26.jpg",
+        "review_message": "Love the compact size. Perfect for picnics and small gatherings."
+      }
+    ]
+  },
+  {
+    "title": "DSLR Camera",
+    "oldPrice": 9850,
+    "newPrice": 7759,
+    "description": "Professional DSLR camera with high resolution and interchangeable lenses.",
+    "type": "Camera",
+    "model": "Canon XT-500",
+    "category": "Cameras",
+    "sizes": [],
+    "images": [
+      "https://i.pinimg.com/1200x/33/1c/5a/331c5aefd9760173596926e1b96ffc1c.jpg",
+      "https://i.pinimg.com/736x/17/66/b5/1766b54ad4157d726c38990bbe6f0857.jpg",
+      "https://i.pinimg.com/1200x/27/08/5c/27085c3d4f073cfd34accb2605fe6a8d.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Zoe Griffin",
+        "useimage": "https://randomuser.me/api/portraits/women/2.jpg",
+        "review_message": "Canon XT-500 DSLR delivers stunning image quality. Lenses are easy to swap."
+      },
+      {
+        "name": "William Ross",
+        "useimage": "https://randomuser.me/api/portraits/men/7.jpg",
+        "review_message": "Great camera for both beginners and pros. The ISO performance is excellent."
+      },
+      {
+        "name": "Natalie Coleman",
+        "useimage": "https://randomuser.me/api/portraits/women/4.jpg",
+        "review_message": "Professional DSLR feel. Very happy with Canon XT-500's clarity and sharpness."
+      }
+    ]
   },
   {
     "title": "Smart Home Assistant",
-    "reviews": 22,
-    "oldPrice": 130.0,
-    "newPrice": 99.0,
+    "oldPrice": 4050,
+    "newPrice": 3050,
     "description": "Voice-controlled smart assistant for your home automation.",
     "type": "Smart Device",
     "model": "HomeBot Mini",
     "category": "Smart Home",
-    "colors": ["black", "white"],
     "sizes": [],
-    "image": "https://images.unsplash.com/photo-1558089687-f282ffcbc126"
+    "images": [
+      "https://i.pinimg.com/1200x/96/f6/f2/96f6f209acfcf63deb36a5ebc30d45a0.jpg",
+      "https://i.pinimg.com/736x/7b/e2/af/7be2afceabea4e32a48907ba4680d917.jpg",
+      "https://i.pinimg.com/736x/52/c1/7c/52c17c45bd797814766266fd3adba3f4.jpg"
+    ],
+    "reviews": [
+      {
+        "name": "Elijah Hughes",
+        "useimage": "https://randomuser.me/api/portraits/men/21.jpg",
+        "review_message": "HomeBot Mini is very responsive. Makes controlling smart devices effortless."
+      },
+      {
+        "name": "Avery Mitchell",
+        "useimage": "https://randomuser.me/api/portraits/women/39.jpg",
+        "review_message": "Voice commands work perfectly. Smart Home Assistant is convenient and easy to set up."
+      },
+      {
+        "name": "Samuel Ward",
+        "useimage": "https://randomuser.me/api/portraits/men/5.jpg",
+        "review_message": "I like automating lights and music with HomeBot Mini. Saves time and adds fun."
+      }
+    ]
   }
 ]
