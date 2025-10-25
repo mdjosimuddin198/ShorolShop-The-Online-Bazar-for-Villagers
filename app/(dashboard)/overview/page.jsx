@@ -17,6 +17,7 @@ const Dashboard = () => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
+  // all products
   const {
     data: products,
     error,
@@ -27,11 +28,20 @@ const Dashboard = () => {
       return getProducts("api/products");
     },
   });
-
+  // my orders products
   const { data: MyOrder } = useQuery({
     queryKey: ["myorders"],
     queryFn: () => {
       return getProducts("api/buyproduct");
+    },
+  });
+
+  // all users
+
+  const { data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: () => {
+      return getProducts("api/auth/user");
     },
   });
 
@@ -40,8 +50,6 @@ const Dashboard = () => {
   useEffect(() => {
     if (MyOrder) setOrders(MyOrder);
   }, [MyOrder]);
-  console.log(MyOrder);
-  console.log(orders);
 
   if (status === "loading") {
     return <h2>loading</h2>;
@@ -90,7 +98,7 @@ const Dashboard = () => {
           </Button>
         </div>
         {/* stats card overview  */}
-        <StatsCards products={products} MyOrder={MyOrder} />
+        <StatsCards products={products} users={users} MyOrder={MyOrder} />
         {/* order list  */}
         <RecentOrders
           orders={orders}

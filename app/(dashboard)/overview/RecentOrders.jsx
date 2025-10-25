@@ -18,6 +18,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { Badge } from "@/components/ui/badge";
 const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
   return (
     <div className="grid grid-cols-1  gap-6">
@@ -47,7 +48,10 @@ const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
                   <TableCell>{order.name}</TableCell>
                   <TableCell>{order.quantity}</TableCell>
                   <TableCell>{order.totalPrice}$</TableCell>
-                  <TableCell>{order.status}</TableCell>
+                  <TableCell>
+                    {" "}
+                    <Badge variant="secondary">{order.status}</Badge>
+                  </TableCell>
                   <TableCell className="flex gap-3 ">
                     <Button variant="ghost" size="icon">
                       <Eye size={16} />
@@ -67,7 +71,8 @@ const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
                             <strong>Customer:</strong> {order.name}
                           </p>
                           <p>
-                            <strong>Current Status:</strong> {order.status}
+                            <strong>Current Status:</strong>{" "}
+                            <Badge variant="secondary">{order.status}</Badge>
                           </p>
 
                           <select

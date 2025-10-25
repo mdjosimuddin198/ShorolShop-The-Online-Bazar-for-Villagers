@@ -7,7 +7,11 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const StatsCards = ({ products, MyOrder }) => {
+const StatsCards = ({ products, MyOrder, users }) => {
+  const totalRevenue = MyOrder?.reduce(
+    (sum, product) => sum + product?.totalPrice,
+    0
+  );
   const stats = [
     {
       title: "Total Products",
@@ -25,14 +29,14 @@ const StatsCards = ({ products, MyOrder }) => {
     },
     {
       title: "Revenue",
-      value: "$45,231",
+      value: `${totalRevenue} $`,
       change: "+23%",
       icon: DollarSign,
       trend: "up",
     },
     {
       title: "Customers",
-      value: "1,234",
+      value: users?.length,
       change: "+5%",
       icon: Users,
       trend: "up",
