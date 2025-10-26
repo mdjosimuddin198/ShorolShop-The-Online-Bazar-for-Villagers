@@ -80,34 +80,31 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen  grid grid-cols-12">
-      <Sidebar />
-      <main className="container md:col-span-9 col-span-12 mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-foreground">
-              Admin Dashboard
-            </h1>
-            <p className="text-muted-foreground mt-1">
-              Welcome back! Here's what's happening today.
-            </p>
-          </div>
-          <Button className="gap-2">
-            <Plus size={16} />
-            Add Product
-          </Button>
+    <main className="container px-4 py-8">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground">
+            Admin Dashboard
+          </h1>
+          <p className="text-muted-foreground mt-1">
+            Welcome back! Here's what's happening today.
+          </p>
         </div>
-        {/* stats card overview  */}
-        <StatsCards products={products} users={users} MyOrder={MyOrder} />
-        {/* order list  */}
-        <RecentOrders
-          orders={orders}
-          handleStatus={handleStatus}
-          setStatusMap={setStatusMap}
-          statusMap={statusMap}
-        />
-      </main>
-    </div>
+        <Button className="gap-2">
+          <Plus size={16} />
+          Add Product
+        </Button>
+      </div>
+      {/* stats card overview  */}
+      <StatsCards products={products} users={users} MyOrder={MyOrder} />
+      {/* order list  */}
+      <RecentOrders
+        orders={orders}
+        handleStatus={handleStatus}
+        setStatusMap={setStatusMap}
+        statusMap={statusMap}
+      />
+    </main>
   );
 };
 

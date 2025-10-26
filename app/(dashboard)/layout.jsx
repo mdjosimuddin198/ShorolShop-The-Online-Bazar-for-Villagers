@@ -1,7 +1,7 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 import NextAuthSessionProvider from "@/provider/NextAuthSessionProvider";
 import QueryProvider from "../components/queryProvider/QueryProvider";
+import Sidebar from "./overview/Sidebar";
 
 export const metadata = {
   title: "Wellcome to Dashboard | SorolShop ",
@@ -14,7 +14,12 @@ export default function AuthLayout({ children }) {
       <body>
         <NextAuthSessionProvider>
           <QueryProvider>
-            <main className="w-11/12 mx-auto">{children}</main>
+            <div className="grid grid-cols-12">
+              <aside className="col-span-3">
+                <Sidebar />
+              </aside>
+              <main className="md:col-span-9 col-span-12">{children}</main>
+            </div>
           </QueryProvider>
         </NextAuthSessionProvider>
       </body>

@@ -48,7 +48,7 @@ const StatsCards = ({ products, MyOrder, users }) => {
       {stats.map((stat) => (
         <Card
           key={stat.title}
-          className="hover:shadow-elegant transition-shadow"
+          className="shadow-secondary  hover:shadow-md transition duration-100"
         >
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">

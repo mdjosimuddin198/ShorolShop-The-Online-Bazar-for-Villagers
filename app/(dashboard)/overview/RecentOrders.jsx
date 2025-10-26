@@ -19,7 +19,12 @@ import {
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { Badge } from "@/components/ui/badge";
+import { useRouter } from "next/navigation";
 const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
+  const router = useRouter();
+  const handleView = (productId) => {
+    router.push(`/products/${productId}`);
+  };
   return (
     <div className="grid grid-cols-1  gap-6">
       {/* Recent Orders */}
@@ -53,7 +58,13 @@ const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
                     <Badge variant="secondary">{order.status}</Badge>
                   </TableCell>
                   <TableCell className="flex gap-3 ">
-                    <Button variant="ghost" size="icon">
+                    <Button
+                      onClick={() => {
+                        handleView(order.productId);
+                      }}
+                      variant="ghost"
+                      size="icon"
+                    >
                       <Eye size={16} />
                     </Button>
                     <Dialog>
