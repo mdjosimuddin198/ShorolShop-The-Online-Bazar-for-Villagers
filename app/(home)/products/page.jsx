@@ -49,8 +49,8 @@ const Products = () => {
   }
 
   // serch products by title
-  let filterProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchItem.toLowerCase())
+  let filterProducts = products?.filter((product) =>
+    product.title.toLowerCase().includes(searchItem?.toLowerCase())
   );
 
   if (fillterdByCatagory) {

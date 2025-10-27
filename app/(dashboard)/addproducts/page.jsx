@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const addproducts = () => {
   const [sizes, setSizes] = useState(new Set());
@@ -39,7 +41,6 @@ const addproducts = () => {
     e.preventDefault();
 
     const productData = {
-      _id: crypto.randomUUID().slice(0, 24),
       title: e.target.title.value,
       oldPrice: Number(e.target.oldPrice.value),
       newPrice: Number(e.target.newPrice.value),
@@ -52,22 +53,35 @@ const addproducts = () => {
       reviews: [], // future: reviews will be added separately
     };
 
+    axios
+      .post("/api/products", productData)
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("✅ Product data generated! Check console.");
+        }
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
+
     console.log("Product Object:", productData);
-    alert("✅ Product data generated! Check console.");
   };
 
   return (
-    <Card className="max-w-4xl mx-auto mt-8 shadow-lg">
+    <Card className="max-w-4xl outlinnon mx-auto mt-8 ">
+      <CardTitle className="text-center text-3xl text-secondary">
+        Add Products
+      </CardTitle>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-8">
           {/* Title & Type */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 ">
             <div>
-              <Label>Title</Label>
+              <Label className="p-2">Title</Label>
               <Input name="title" placeholder="Enter product title" required />
             </div>
             <div>
-              <Label>Type</Label>
+              <Label className="p-2">Type</Label>
               <Input name="type" placeholder="Enter product type" required />
             </div>
           </div>
@@ -75,7 +89,7 @@ const addproducts = () => {
           {/* Price */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label>Old Price</Label>
+              <Label className="p-2">Old Price</Label>
               <Input
                 type="number"
                 name="oldPrice"
@@ -84,7 +98,7 @@ const addproducts = () => {
               />
             </div>
             <div>
-              <Label>New Price</Label>
+              <Label className="p-2">New Price</Label>
               <Input
                 type="number"
                 name="newPrice"
@@ -96,7 +110,7 @@ const addproducts = () => {
 
           {/* Description */}
           <div>
-            <Label>Description</Label>
+            <Label className="p-2">Description</Label>
             <Textarea
               name="description"
               placeholder="Enter product description"
@@ -107,19 +121,23 @@ const addproducts = () => {
           {/* Model & Category */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <Label>Model</Label>
+              <Label className="p-2">Model</Label>
               <Input name="model" placeholder="Enter model name" required />
             </div>
             <div>
-              <Label>Category</Label>
+              <Label className="p-2">Category</Label>
               <Select name="category" required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="text-black">
                   <SelectItem value="Wearables">Wearables</SelectItem>
-                  <SelectItem value="Electronics">Electronics</SelectItem>
+                  <SelectItem value="Audio">Audio</SelectItem>
+                  <SelectItem value="Cameras">Cameras</SelectItem>
                   <SelectItem value="Accessories">Accessories</SelectItem>
+                  <SelectItem value="Monitors">Monitors</SelectItem>
+                  <SelectItem value="Smart Home">Smart Home</SelectItem>
+                  <SelectItem value="Electronics">Electronics</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -127,7 +145,7 @@ const addproducts = () => {
 
           {/* Sizes */}
           <div>
-            <Label>Sizes</Label>
+            <Label className="p-2">Sizes</Label>
             <div className="flex gap-4 mt-2">
               {["S", "M", "L", "XL"].map((s) => (
                 <label key={s} className="flex items-center gap-2">
@@ -143,11 +161,12 @@ const addproducts = () => {
 
           {/* Images */}
           <div>
-            <Label>Images</Label>
+            <Label className="p-2">Images</Label>
             <div className="flex gap-2 mt-2">
               <Input id="imageUrl" placeholder="Image URL" />
               <Button
                 type="button"
+                className="cursor-pointer"
                 onClick={() =>
                   handleAddImage(document.getElementById("imageUrl").value)
                 }
@@ -166,7 +185,7 @@ const addproducts = () => {
                   />
                   <Button
                     type="button"
-                    className="mt-2 w-full"
+                    className="mt-2 w-full cursor-pointer"
                     variant="destructive"
                     onClick={() => handleRemoveImage(idx)}
                   >
@@ -182,11 +201,13 @@ const addproducts = () => {
             <Button
               type="button"
               variant="secondary"
-              onClick={() => console.log("Cancelled")}
+              onClick={() => toast.warn("Cancelled")}
             >
               Cancel
             </Button>
-            <Button type="submit">Save Product</Button>
+            <Button className="cursor-pointer" type="submit">
+              Save Product
+            </Button>
           </div>
         </form>
       </CardContent>
