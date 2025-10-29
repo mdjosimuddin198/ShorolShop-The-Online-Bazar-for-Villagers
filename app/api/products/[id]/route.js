@@ -18,5 +18,7 @@ export const GET = async (req, { params }) => {
 export const DELETE = async (req, { params }) => {
   const { id } = await params;
   const delProduct = await collection.deleteOne({ _id: new ObjectId(id) });
-  return new Response("delete succssfully");
+  return new Response(
+    JSON.stringify({ message: "proudct delete sucssesfully " })
+  );
 };

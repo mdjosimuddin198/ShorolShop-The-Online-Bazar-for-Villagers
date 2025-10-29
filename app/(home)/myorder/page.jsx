@@ -83,7 +83,7 @@ const MyOrder = () => {
                 </Badge>
               </TableCell>
               <TableCell>{myorder.quantity}</TableCell>
-              <TableCell>{myorder.totalPrice}</TableCell>
+              <TableCell>{myorder.totalPrice} $</TableCell>
               <TableCell>
                 <Button
                   className="cursor-pointer hover:scale-105"

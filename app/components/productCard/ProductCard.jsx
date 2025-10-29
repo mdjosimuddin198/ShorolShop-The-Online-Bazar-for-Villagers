@@ -4,11 +4,10 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ product }) => {
-  const { _id, category, images, newPrice, title, weight, oldPrice, model } =
-    product;
+  const { _id, images, newPrice, title, oldPrice } = product;
+  const imageSrc = images && images.length > 0 ? images[1] || images[0] : null;
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -26,7 +25,7 @@ const ProductCard = ({ product }) => {
         <CardContent className="flex flex-col ">
           <div className="w-full h-40 relative rounded-xl overflow-hidden bg-gray-100">
             <Image
-              src={images?.[1]}
+              src={imageSrc}
               alt={title}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
@@ -54,6 +53,7 @@ const ProductCard = ({ product }) => {
           <Button className="cursor-pointer hover:scale-105" variant="ghost">
             Add to Cart
           </Button>
+
           <Link
             href={`products/${_id}`}
             className="cursor-pointer hover:scale-105"

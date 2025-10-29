@@ -1,7 +1,5 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-// import ProductCard from "../components/productCard/ProductCard";
-// import ProductsLoading from "../components/Loading/ProductsLoading";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,7 +9,6 @@ import ProductCard from "../../components/productCard/ProductCard";
 import getProducts from "@/hook/getProducts";
 import { motion } from "motion/react";
 const Products = () => {
-  const router = useRouter();
   const [searchItem, setSerchItem] = useState("");
   const [fillterdByCatagory, SetFillterdByCatagory] = useState("");
   const [activeCategory, setActiveCategory] = useState("");

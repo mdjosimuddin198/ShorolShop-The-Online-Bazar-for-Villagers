@@ -57,7 +57,7 @@ const addproducts = () => {
       .post("/api/products", productData)
       .then((res) => {
         if (res.data.insertedId) {
-          toast.success("✅ Product data generated! Check console.");
+          toast.success("product add sucsessfully ");
         }
       })
       .catch((err) => {
