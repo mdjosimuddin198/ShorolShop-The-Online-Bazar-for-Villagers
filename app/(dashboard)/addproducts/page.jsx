@@ -15,10 +15,17 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useSession } from "next-auth/react";
+import ForbiddenPage from "@/app/components/ForbiddenPage/ForbiddenPage";
 
 const addproducts = () => {
+  const { data: session } = useSession();
   const [sizes, setSizes] = useState(new Set());
   const [images, setImages] = useState([]);
+
+  if (!session || session.user.role !== "admin") {
+    return <ForbiddenPage />;
+  }
 
   const toggleSize = (size) => {
     const newSizes = new Set(sizes);
@@ -61,7 +68,7 @@ const addproducts = () => {
         }
       })
       .catch((err) => {
-        toast.error(err);
+        toast.error(err.response?.data?.message || "Something went wrong!");
       });
 
     console.log("Product Object:", productData);
@@ -125,7 +132,7 @@ const addproducts = () => {
               <Input name="model" placeholder="Enter model name" required />
             </div>
             <div>
-              <Label className="p-2">Category</Label>
+              <Label className=" p-2">Category</Label>
               <Select name="category" required>
                 <SelectTrigger>
                   <SelectValue placeholder="Select category" />

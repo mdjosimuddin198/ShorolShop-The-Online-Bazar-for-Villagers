@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Package, ShoppingBag, DollarSign, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import getProducts from "@/hook/getProducts";
 import { useSession } from "next-auth/react";
@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import OverViewLoading from "./OverViewLoading";
 import Link from "next/link";
+import UserDashboard from "./UserDashboard";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -47,17 +48,14 @@ const Dashboard = () => {
 
   const [statusMap, setStatusMap] = useState({});
   const [orders, setOrders] = useState([]);
+
   useEffect(() => {
     if (MyOrder) setOrders(MyOrder);
   }, [MyOrder]);
 
   if (status === "loading") {
-    return <OverViewLoading />;
+    return <OverViewLoading orders={orders} />;
   }
-
-  // if (!session || session.user.role !== "admin") {
-  //   return <h2>Unauthorized</h2>;
-  // }
 
   const handleStatus = async (newStatus, orderId) => {
     axios
@@ -79,6 +77,82 @@ const Dashboard = () => {
       });
   };
 
+  const totalRevenue = MyOrder?.reduce(
+    (sum, product) => sum + product?.totalPrice,
+    0
+  );
+
+  const userOrders = MyOrder?.filter(
+    (orders) => orders.email === session.user.email
+  );
+
+  const userCost = userOrders?.reduce(
+    (sum, product) => sum + product.totalPrice,
+    0
+  );
+
+  let stats;
+  {
+    session.user.role === "admin"
+      ? (stats = [
+          {
+            title: "Total Products",
+            value: products?.length,
+            change: "+12%",
+            icon: Package,
+            trend: "up",
+          },
+          {
+            title: "Total Orders",
+            value: MyOrder?.length,
+            change: "+8%",
+            icon: ShoppingBag,
+            trend: "up",
+          },
+          {
+            title: "Revenue",
+            value: `${totalRevenue} $`,
+            change: "+23%",
+            icon: DollarSign,
+            trend: "up",
+          },
+          {
+            title: "Customers",
+            value: users?.length,
+            change: "+5%",
+            icon: Users,
+            trend: "up",
+          },
+        ])
+      : (stats = [
+          {
+            title: "Total Products",
+            value: products?.length,
+            change: "+12%",
+            icon: Package,
+            trend: "up",
+          },
+          {
+            title: "My Orders",
+            value: MyOrder?.length,
+            change: "+8%",
+            icon: ShoppingBag,
+            trend: "up",
+          },
+          {
+            title: "My Cost",
+            value: `${userCost} $`,
+            change: "+23%",
+            icon: DollarSign,
+            trend: "up",
+          },
+        ]);
+  }
+
+  if (!session || session.user.role !== "admin") {
+    return <UserDashboard stats={stats} />;
+  }
+
   return (
     <main className="container px-4 py-8">
       <div className="flex items-center justify-between mb-8">
@@ -98,7 +172,7 @@ const Dashboard = () => {
         </Link>
       </div>
       {/* stats card overview  */}
-      <StatsCards products={products} users={users} MyOrder={MyOrder} />
+      <StatsCards stats={stats} />
       {/* order list  */}
       <RecentOrders
         orders={orders}

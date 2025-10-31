@@ -7,42 +7,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-const StatsCards = ({ products, MyOrder, users }) => {
-  const totalRevenue = MyOrder?.reduce(
-    (sum, product) => sum + product?.totalPrice,
-    0
-  );
-  const stats = [
-    {
-      title: "Total Products",
-      value: products?.length,
-      change: "+12%",
-      icon: Package,
-      trend: "up",
-    },
-    {
-      title: "Total Orders",
-      value: MyOrder?.length,
-      change: "+8%",
-      icon: ShoppingBag,
-      trend: "up",
-    },
-    {
-      title: "Revenue",
-      value: `${totalRevenue} $`,
-      change: "+23%",
-      icon: DollarSign,
-      trend: "up",
-    },
-    {
-      title: "Customers",
-      value: users?.length,
-      change: "+5%",
-      icon: Users,
-      trend: "up",
-    },
-  ];
-
+const StatsCards = ({ stats }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       {stats.map((stat) => (

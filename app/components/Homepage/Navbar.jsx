@@ -33,7 +33,6 @@ export default function Navbar() {
     { href: "/", label: "Home", icon: <FaHome /> },
     { href: "/products", label: "Products", icon: <FaBox /> },
     { href: "/about", label: "About", icon: <FaInfoCircle /> },
-    { href: "/myorder", label: "My Order", icon: <IoCart /> },
   ];
 
   const navLinks = navItems.map((item) => (
@@ -112,20 +111,7 @@ export default function Navbar() {
               <nav className="grid gap-4">
                 {navLinks}
                 {/* if user exits   */}
-                {session ? (
-                  <>
-                    <Button
-                      variant="secondary"
-                      size="icon"
-                      aria-label="Wishlist"
-                    >
-                      <FaHeart className="h-8 w-8" />
-                    </Button>
-                    <Button variant="secondary" size="icon" aria-label="Cart">
-                      <IoCart className="h-8 w-8" />
-                    </Button>
-                  </>
-                ) : (
+                {!session && (
                   <>
                     <LoginBtn />
                     <RegisterBtn />

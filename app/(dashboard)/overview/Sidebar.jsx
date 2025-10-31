@@ -15,28 +15,39 @@ import {
   Users,
   TrendingUp,
   LogOut,
+  HomeIcon,
 } from "lucide-react";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
-const menuItems = [
-  { label: "Add New Product", icon: Plus, href: "/addproducts" },
-  { label: "Manage Products", icon: Edit, href: "/manageproducts" },
-  { label: "View All Orders", icon: ShoppingBag, href: "/orders" },
-  { label: "Manage Customers", icon: Users, href: "/customers" },
-  { label: "View Analytics", icon: TrendingUp, href: "/analytics" },
-];
-
-const navLinks = menuItems.map((item, index) => (
-  <Link className="flex items-center  gap-3" key={index} href={item.href}>
-    <Button className="flex w-full  cursor-pointer hover:scale-105 items-center  gap-3">
-      <item.icon size={16} />
-      {item.label}
-    </Button>
-  </Link>
-));
-
 const Sidebar = () => {
+  const { data: session, status } = useSession();
+  let menuItems;
+  {
+    session?.user?.role === "admin"
+      ? (menuItems = [
+          { label: "Dashboard", icon: HomeIcon, href: "/overview" },
+          { label: "Add New Product", icon: Plus, href: "/addproducts" },
+          { label: "Manage Products", icon: Edit, href: "/manageproducts" },
+          { label: "Manage Customers", icon: Users, href: "/customers" },
+          { label: "View Analytics", icon: TrendingUp, href: "/analytics" },
+        ])
+      : (menuItems = [
+          { label: "Dashboard", icon: HomeIcon, href: "/overview" },
+          { label: "My Orders", icon: ShoppingBag, href: "/myorder" },
+          { label: "View Analytics", icon: TrendingUp, href: "/analytics" },
+        ]);
+  }
+
+  const navLinks = menuItems.map((item, index) => (
+    <Link className="flex items-center  gap-3" key={index} href={item.href}>
+      <Button className="flex w-full  cursor-pointer hover:scale-105 items-center  gap-3">
+        <item.icon size={16} />
+        {item.label}
+      </Button>
+    </Link>
+  ));
+
   const logout = () => {
     signOut({ callbackUrl: "/" });
     toast.success("See you soon! You’ve logged out");

@@ -19,11 +19,15 @@ import ManagProductsLoading from "./manageProductsLoading";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import ForbiddenPage from "@/app/components/ForbiddenPage/ForbiddenPage";
 
 const ManageProducts = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  if (!session || session.user.role !== "admin") {
+    return <ForbiddenPage />;
+  }
   const {
     data: products,
     isLoading,
