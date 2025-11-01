@@ -25,7 +25,7 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:3000/api/auth/user", formData)
+      .post("/api/auth/user", formData)
       .then((res) => {
         console.log("user data save done ", res);
         toast.success("user created succssfully");

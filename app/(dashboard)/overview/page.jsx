@@ -134,7 +134,7 @@ const Dashboard = () => {
           },
           {
             title: "My Orders",
-            value: MyOrder?.length,
+            value: userOrders?.length,
             change: "+8%",
             icon: ShoppingBag,
             trend: "up",

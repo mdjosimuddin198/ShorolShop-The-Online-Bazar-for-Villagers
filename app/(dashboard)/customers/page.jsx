@@ -14,13 +14,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
 import { useSession } from "next-auth/react";
 import ForbiddenPage from "@/app/components/ForbiddenPage/ForbiddenPage";
+import { Trash } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const ManageCustomers = () => {
   const { data: session, status } = useSession();
-
-  if (!session || session.user.role !== "admin") {
-    return <ForbiddenPage />;
-  }
 
   const { data: users } = useQuery({
     queryKey: ["users"],
@@ -28,6 +26,10 @@ const ManageCustomers = () => {
       return getProducts("api/auth/user");
     },
   });
+
+  if (!session || session?.user?.role !== "admin") {
+    return <ForbiddenPage />;
+  }
 
   return (
     <Card>
@@ -41,7 +43,8 @@ const ManageCustomers = () => {
               <TableHead>User Image </TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
-              <TableHead>Email</TableHead>
+              <TableHead>User Role</TableHead>
+              <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -59,6 +62,11 @@ const ManageCustomers = () => {
                   <Badge variant="secondary">
                     {user.role ? user.role : "user"}
                   </Badge>
+                </TableCell>
+                <TableCell>
+                  <Button variant="secondary">
+                    <Trash />
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
