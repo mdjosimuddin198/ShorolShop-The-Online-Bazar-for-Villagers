@@ -10,15 +10,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import getProducts from "@/hook/getProducts";
-import { useQuery } from "@tanstack/react-query";
+import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
 import { useSession } from "next-auth/react";
 import ForbiddenPage from "@/app/components/ForbiddenPage/ForbiddenPage";
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import axios from "axios";
+import { toast } from "react-toastify";
 const ManageCustomers = () => {
   const { data: session, status } = useSession();
+  const queryClient = useQueryClient();
 
   const { data: users } = useQuery({
     queryKey: ["users"],
@@ -30,6 +32,20 @@ const ManageCustomers = () => {
   if (!session || session?.user?.role !== "admin") {
     return <ForbiddenPage />;
   }
+
+  const handleDeleteUser = (userId) => {
+    axios
+      .delete(`/api/auth/user/${userId}`)
+      .then((res) => {
+        toast.success(res.data.message);
+        // 🔹 UI refresh
+        queryClient.invalidateQueries({ queryKey: ["users"] });
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("check again ", err.message);
+      });
+  };
 
   return (
     <Card>
@@ -64,7 +80,10 @@ const ManageCustomers = () => {
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <Button variant="secondary">
+                  <Button
+                    onClick={() => handleDeleteUser(user._id)}
+                    variant="secondary"
+                  >
                     <Trash />
                   </Button>
                 </TableCell>

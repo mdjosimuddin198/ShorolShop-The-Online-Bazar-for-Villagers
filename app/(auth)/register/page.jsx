@@ -8,9 +8,11 @@ import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import LoginBtn from "@/app/components/actions/LoginBtn";
 import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
-  // using plain JavaScript only, no TypeScript
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,16 +26,27 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post("/api/auth/user", formData)
-      .then((res) => {
-        console.log("user data save done ", res);
-        toast.success("user created succssfully");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("user create failed");
+    try {
+      const res = await axios.post("/api/auth/user", formData);
+      toast.success("User created successfully");
+
+      // ✅ auto login
+      const loginRes = await signIn("credentials", {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
       });
+
+      if (loginRes?.error) {
+        toast.error("Login failed after registration");
+      } else {
+        toast.success("Logged in successfully");
+        router.push("/");
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("User creation failed");
+    }
   };
 
   return (
