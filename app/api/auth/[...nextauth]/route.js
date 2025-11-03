@@ -4,7 +4,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 // josimuddin0505
-export const authOptions = {
+const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -52,8 +52,8 @@ export const authOptions = {
       },
     }),
   ],
-  page: {
-    signIn: "/api/auth/signin",
+  pages: {
+    signIn: "/signin",
   },
   session: {
     strategy: "jwt",
@@ -63,13 +63,13 @@ export const authOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
-        token.role = user.role; // 🟡 role token এ সেট করো
+        token.role = user.role; //  role token এ সেট করো
       }
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id;
-      session.user.role = token.role; // 🟡 session এ role সেট করো
+      session.user.role = token.role; //  session এ role সেট করো
       return session;
     },
   },
