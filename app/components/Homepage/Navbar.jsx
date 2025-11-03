@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { Button } from "../../../components/ui/button";
-import { FaBox, FaHeart, FaHome, FaInfoCircle } from "react-icons/fa";
-import { IoCart, IoMenu } from "react-icons/io5";
+import { FaBox, FaHome, FaInfoCircle } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
 import { MdDashboard } from "react-icons/md";
 import {
   Sheet,
@@ -10,22 +10,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import LoginBtn from "../actions/LoginBtn";
 import RegisterBtn from "../actions/RegisterBtn";
 import Image from "next/image";
-import { toast } from "react-toastify";
 import { usePathname, useRouter } from "next/navigation";
-import { motion } from "motion/react";
 
 export default function Navbar() {
   const path = usePathname();
   const router = useRouter();
   const { data: session, status } = useSession();
-  const handleSignOut = () => {
-    signOut();
-    toast.success("See you soon! You’ve logged out");
-  };
+
   const isActive = (href) =>
     path === href ? "text-secondary font-semibold" : "";
 
@@ -64,20 +59,16 @@ export default function Navbar() {
           {session ? (
             <>
               <p className="hidden md:block">{session.user.name}</p>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                className="relative w-10 h-10 "
-              >
+              <div className="relative w-10 h-10 ">
                 <Image
                   src={session.user.image}
                   alt={session.user.name}
-                  onClick={handleSignOut}
                   fill
                   className="object-cover  rounded-full"
                   priority
                   sizes="(max-width: 768px) 100vw , 48vw"
                 />
-              </motion.div>
+              </div>
               <MdDashboard
                 onClick={() => {
                   router.push("/overview");

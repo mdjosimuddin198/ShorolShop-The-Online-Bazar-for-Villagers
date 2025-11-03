@@ -69,7 +69,7 @@ const ManageCustomers = () => {
                 <TableCell className="w-12 h-12 rounded-full overflow-hidden relative">
                   <Avatar>
                     <AvatarImage src={user.image} alt="@shadcn" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarFallback>DP</AvatarFallback>
                   </Avatar>
                 </TableCell>
                 <TableCell>{user.name}</TableCell>

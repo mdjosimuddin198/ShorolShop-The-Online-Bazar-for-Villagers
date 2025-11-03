@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+🛒 ShorolShop — E-Commerce Website
 
-## Getting Started
+ShorolShop is a modern e-commerce platform where users can easily explore and purchase premium electronics and lifestyle products. The website ensures a seamless shopping experience with an intuitive admin dashboard for complete control over products and users.
 
-First, run the development server:
+🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+👤 User Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1.Purchase products directly from the website
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+2.View detailed product information
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3.Smooth and secure checkout process
 
-## Learn More
+4.Admin Features
 
-To learn more about Next.js, take a look at the following resources:
+➕ Add new products
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1.existing products
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2.Change product status (e.g. pending , shiped , deliverd , canceld )
 
-## Deploy on Vercel
+3.Manage users ( Delete User users)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4.See dynamic counts of total users and total products in real-time
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🛠️ Tech Stack
+
+Frontend: Next.js, Tailwind CSS, Shadcn UI, Framer Motion
+
+Backend: Next.js API Routes / Node.js
+
+Database: MongoDB
+
+Deployment: Vercel
+
+📸 Overview
+
+This project demonstrates a fully functional e-commerce system with role-based access (User & Admin), real-time data updates, and a modern dark-themed UI.

@@ -12,22 +12,18 @@ import {
 } from "@/components/ui/table";
 import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
-import { Edit, Eye, Trash } from "lucide-react";
+import { Eye, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import ManagProductsLoading from "./manageProductsLoading";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useEffect, useState } from "react";
 import ForbiddenPage from "@/app/components/ForbiddenPage/ForbiddenPage";
 
 const ManageProducts = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (!session || session.user.role !== "admin") {
-    return <ForbiddenPage />;
-  }
   const {
     data: products,
     isLoading,
@@ -39,14 +35,6 @@ const ManageProducts = () => {
       return getProducts("api/products");
     },
   });
-
-  if (isLoading || status === "loading") {
-    return <ManagProductsLoading />;
-  }
-
-  const handleView = (productId) => {
-    router.push(`/products/${productId}`);
-  };
 
   const handleDelete = (productId) => {
     console.log("btn click");
@@ -60,6 +48,18 @@ const ManageProducts = () => {
       .catch((err) => {
         toast.error("faild to delete", err);
       });
+  };
+
+  if (isLoading || status === "loading") {
+    return <ManagProductsLoading />;
+  }
+
+  if (!session || session.user.role !== "admin") {
+    return <ForbiddenPage />;
+  }
+
+  const handleView = (productId) => {
+    router.push(`/products/${productId}`);
   };
 
   return (

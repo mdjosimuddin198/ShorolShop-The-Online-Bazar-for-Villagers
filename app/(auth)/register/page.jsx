@@ -30,7 +30,7 @@ export default function RegisterPage() {
       const res = await axios.post("/api/auth/user", formData);
       toast.success("User created successfully");
 
-      // ✅ auto login
+      //  login after register
       const loginRes = await signIn("credentials", {
         redirect: false,
         email: formData.email,

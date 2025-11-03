@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
-import Link from "next/link";
 import StatsCards from "./StatsCards";
 
-const UserDashboard = ({ stats }) => {
+const UserDashboard = ({ stats, signOutuser }) => {
   return (
     <main className="container px-4 py-8">
       <div className="flex items-center justify-between mb-8">
@@ -13,12 +12,11 @@ const UserDashboard = ({ stats }) => {
             Welcome back! Here's what's happening today.
           </p>
         </div>
-        <Link href="/addproducts">
-          <Button className="gap-2 cursor-pointer">
-            <LogOut size={16} />
-            Log Out
-          </Button>
-        </Link>
+
+        <Button onClick={signOutuser} className="gap-2 cursor-pointer">
+          <LogOut size={16} />
+          Log Out
+        </Button>
       </div>
       {/* stats card overview  */}
       <StatsCards stats={stats} />

@@ -3,19 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Plus, Package, ShoppingBag, DollarSign, Users } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import getProducts from "@/hook/getProducts";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import StatsCards from "./StatsCards";
 import RecentOrders from "./RecentOrders";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 import OverViewLoading from "./OverViewLoading";
 import Link from "next/link";
 import UserDashboard from "./UserDashboard";
 
 const Dashboard = () => {
-  const router = useRouter();
   const { data: session, status } = useSession();
 
   // all products
@@ -75,6 +73,11 @@ const Dashboard = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const signOutuser = () => {
+    signOut({ callbackUrl: "/" });
+    toast.success("See you soon! You’ve logged out");
   };
 
   const totalRevenue = MyOrder?.reduce(
@@ -150,7 +153,7 @@ const Dashboard = () => {
   }
 
   if (!session || session.user.role !== "admin") {
-    return <UserDashboard stats={stats} />;
+    return <UserDashboard signOutuser={signOutuser} stats={stats} />;
   }
 
   return (
