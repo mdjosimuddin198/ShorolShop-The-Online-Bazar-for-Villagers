@@ -9,17 +9,28 @@ export const GET = async () => {
 
 export const POST = async (req) => {
   const order = await req.json();
-  const { productId } = order;
+  const { productId, email } = order;
 
   const existingOrder = await collection.findOne({
     productId,
+    email,
   });
   if (existingOrder) {
+    await collection.updateOne(
+      { productId, email },
+      {
+        $inc: { quantity: 1 },
+      }
+    );
+
     return Response.json({
-      message: "You have already ordered this product",
-      status: 400,
+      message: "Quantity updated",
+      status: 200,
     });
   }
+
+  order.quantity = 1;
+
   const myOrders = await collection.insertOne(order);
   return Response.json({
     message: "succssfully added your product",
