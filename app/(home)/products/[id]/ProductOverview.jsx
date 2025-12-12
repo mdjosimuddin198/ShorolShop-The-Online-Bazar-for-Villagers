@@ -75,9 +75,7 @@ const ProductOverview = ({ product }) => {
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
                       priority
-                      className=" shadow-lg 
-            hover:scale-125 hover:shadow-2xl 
-            transition duration-300 ease-in-out"
+                      className=" shadow-lg hover:scale-125 hover:shadow-2xl transition duration-300 ease-in-out"
                     />
                   </div>
 

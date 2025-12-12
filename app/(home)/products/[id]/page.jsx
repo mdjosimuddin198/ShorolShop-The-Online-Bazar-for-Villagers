@@ -185,7 +185,7 @@ const ProductDetails = () => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={`relative p text-xl font-semibold cursor-pointer transition-colors ${
+            className={`relative  text-xl font-semibold cursor-pointer transition-colors ${
               activeTab === tab.id ? "text-secondary" : "text-black "
             }`}
           >

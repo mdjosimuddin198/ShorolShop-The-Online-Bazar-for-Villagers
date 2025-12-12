@@ -26,6 +26,12 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
   const { data: session } = useSession();
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
+  const [activePay, setActivePay] = useState("cash_on");
+
+  const tabs = [
+    { id: "cash-on", label: "Cash On Delivery" },
+    { id: "ssl", label: "SSL" },
+  ];
 
   const mutation = useMutation({
     mutationFn: MyOrder,
@@ -106,45 +112,80 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
             </div>
           </div>
 
-          <form className="flex flex-col gap-4">
-            <Input
-              placeholder="Enter Your Name"
-              value={session?.user?.name}
-              className="w-full h-8 cursor-not-allowed "
-              readOnly
-            />
-            <Input
-              placeholder="Enter Your email"
-              value={session?.user?.email}
-              className="w-full h-8 cursor-not-allowed "
-              readOnly
-            />
-            <Input
-              value={product._id}
-              className="w-full h-8  cursor-not-allowed"
-              readOnly
-            />
-            <Textarea
-              placeholder="Enter Your Address"
-              className="w-full h-8  "
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
+          <div className="flex items-center justify-evenly">
+            {tabs.map((tab) => (
+              <Button
+                variant="secondary"
+                className={`relative text-xl font-semibold cursor-pointer transition-colors ${
+                  activePay === tab.id ? "text-white" : "text-black "
+                }`}
+                onClick={() => setActivePay(tab.id)}
+                key={tab.id}
+              >
+                {tab.label}
+              </Button>
+            ))}
+          </div>
 
-            <Input
-              placeholder="Enter Your Number "
-              className="w-full h-8  "
-              type="number"
-              onChange={(e) => setPhone(e.target.value)}
-              required
-            />
-            <Badge
-              variant="primary"
-              className="bg-gradient-to-l from-primary to-secondary text-white"
-            >
-              Only Cashon Delevery Are Available Now
-            </Badge>
-          </form>
+          {activePay === "cash-on" && (
+            <form className="flex flex-col gap-4">
+              <Input
+                placeholder="Enter Your Name"
+                value={session?.user?.name}
+                className="w-full h-8 cursor-not-allowed "
+                readOnly
+              />
+              <Input
+                placeholder="Enter Your email"
+                value={session?.user?.email}
+                className="w-full h-8 cursor-not-allowed "
+                readOnly
+              />
+              <Input
+                value={product._id}
+                className="w-full h-8  cursor-not-allowed"
+                readOnly
+              />
+              <Textarea
+                placeholder="Enter Your Address"
+                className="w-full h-8  "
+                onChange={(e) => setAddress(e.target.value)}
+                required
+              />
+
+              <Input
+                placeholder="Enter Your Number "
+                className="w-full h-8  "
+                type="number"
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
+              <Badge
+                variant="primary"
+                className="bg-gradient-to-l from-primary to-secondary text-white"
+              >
+                Only Cashon Delivery Are Available Now
+              </Badge>
+            </form>
+          )}
+
+          {activePay === "ssl" && (
+            <div className="flex flex-col items-center justify-center  text-center px-4">
+              <p className="text-sm uppercase tracking-wide text-gray-500 font-medium">
+                We’re still
+              </p>
+
+              <h1 className="text-4xl md:text-6xl font-extrabold text-blue-600 mt-2">
+                Cooking This Feature.
+              </h1>
+
+              <p className="text-gray-500 mt-3 max-w-md">
+                I am going to launch My website very soon.
+                <br />
+                Stay tuned.
+              </p>
+            </div>
+          )}
 
           <DialogFooter>
             <Button
