@@ -41,7 +41,8 @@ const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
                 <TableHead>Customer</TableHead>
                 <TableHead>Quantity</TableHead>
                 <TableHead>Amount</TableHead>
-                <TableHead>Status</TableHead>
+                <TableHead>Deleveri Status</TableHead>
+                <TableHead>Payment Status</TableHead>
                 <TableHead>Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -53,10 +54,16 @@ const RecentOrders = ({ orders, setStatusMap, statusMap, handleStatus }) => {
                   </TableCell>
                   <TableCell>{order.name}</TableCell>
                   <TableCell>{order.quantity}</TableCell>
-                  <TableCell>{order.totalPrice}$</TableCell>
+                  <TableCell>{order.unitPrice * order.quantity}$</TableCell>
                   <TableCell>
-                    {" "}
-                    <Badge variant="secondary">{order.status}</Badge>
+                    <Badge variant="secondary">{order.deleveriStatus}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge>
+                      {order.PaymentStatus
+                        ? order.PaymentStatus
+                        : "cash on deleveri"}
+                    </Badge>
                   </TableCell>
                   <TableCell className="flex gap-3 ">
                     <Button

@@ -39,7 +39,7 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
       if (data.status === 400) {
         toast.error(data.message);
       } else {
-        console.log("product data save ", data.message);
+        // console.log("product data save ", data.message);
         toast.success(data.message);
       }
     },
@@ -54,12 +54,40 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
       email: session.user.email,
       productId: product._id,
       quantity,
+      unitPrice: product.newPrice,
       totalPrice,
       phone,
       address,
-      status: "pending",
+      paymentMethod: "cash on delivery",
+      deleveriStatus: "pending",
     };
     mutation.mutate(MyOrderProduct);
+  };
+
+  const handlePayment = async () => {
+    if (!phone || !address) {
+      toast.error("Phone & Address is required");
+      return;
+    }
+    const sslPayload = {
+      name: session.user.name,
+      email: session.user.email,
+      productId: product._id,
+      quantity,
+      unitPrice: product.newPrice,
+      totalPrice,
+      phone,
+      address,
+      paymentMethod: "ssl",
+      PaymentStatus: "pending",
+      deleveriStatus: "pending",
+    };
+    // console.log("payment info ", sslPayload);
+    const response = await axios.post("/api/ssl-payment", sslPayload);
+    console.log(response.data?.gatPaymentUrl);
+    if (response.data?.gatPaymentUrl) {
+      window.location.replace(response?.data?.gatPaymentUrl);
+    }
   };
 
   return (
@@ -112,90 +140,113 @@ const BuyNowModal = ({ product, quantity, totalPrice }) => {
             </div>
           </div>
 
-          <div className="flex items-center justify-evenly">
+          <div className="flex gap-2">
             {tabs.map((tab) => (
-              <Button
-                variant="secondary"
-                className={`relative text-xl font-semibold cursor-pointer transition-colors ${
-                  activePay === tab.id ? "text-white" : "text-black "
-                }`}
-                onClick={() => setActivePay(tab.id)}
+              <button
                 key={tab.id}
+                type="button"
+                onClick={() => setActivePay(tab.id)}
+                className={`w-full py-2 rounded-md text-sm font-medium border
+        ${
+          activePay === tab.id
+            ? "bg-secondary text-white border-secondary"
+            : "border-gray-300 text-gray-600"
+        }`}
               >
                 {tab.label}
-              </Button>
+              </button>
             ))}
           </div>
 
-          {activePay === "cash-on" && (
-            <form className="flex flex-col gap-4">
-              <Input
-                placeholder="Enter Your Name"
-                value={session?.user?.name}
-                className="w-full h-8 cursor-not-allowed "
-                readOnly
-              />
-              <Input
-                placeholder="Enter Your email"
-                value={session?.user?.email}
-                className="w-full h-8 cursor-not-allowed "
-                readOnly
-              />
-              <Input
-                value={product._id}
-                className="w-full h-8  cursor-not-allowed"
-                readOnly
-              />
-              <Textarea
-                placeholder="Enter Your Address"
-                className="w-full h-8  "
-                onChange={(e) => setAddress(e.target.value)}
-                required
-              />
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (!phone || !address) {
+                toast.error("Phone & Address is required");
+                return;
+              }
+              handleBuyProduct();
+            }}
+            className="flex flex-col gap-4"
+          >
+            <Input
+              placeholder="Enter Your Name"
+              value={session?.user?.name}
+              className="w-full h-8 cursor-not-allowed "
+              readOnly
+            />
+            <Input
+              placeholder="Enter Your email"
+              value={session?.user?.email}
+              className="w-full h-8 cursor-not-allowed "
+              readOnly
+            />
+            <Input
+              value={product._id}
+              className="w-full h-8  cursor-not-allowed"
+              readOnly
+            />
+            <Textarea
+              placeholder="Enter Your Address"
+              className="w-full h-8  "
+              onChange={(e) => setAddress(e.target.value)}
+              required
+            />
 
-              <Input
-                placeholder="Enter Your Number "
-                className="w-full h-8  "
-                type="number"
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
-              <Badge
-                variant="primary"
-                className="bg-gradient-to-l from-primary to-secondary text-white"
-              >
-                Only Cashon Delivery Are Available Now
+            <Input
+              placeholder="Enter Your Number "
+              className="w-full h-8  "
+              type="tel"
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+            {activePay === "cash-on" && (
+              <Badge className="bg-gradient-to-l from-primary to-secondary text-white">
+                Cash On Delivery Selected
               </Badge>
-            </form>
-          )}
+            )}
 
-          {activePay === "ssl" && (
-            <div className="flex flex-col items-center justify-center  text-center px-4">
-              <p className="text-sm uppercase tracking-wide text-gray-500 font-medium">
-                We’re still
-              </p>
+            {activePay === "ssl" && (
+              <Badge className="bg-gradient-to-l from-primary to-secondary text-white">
+                Pay Securely with SSLCommerz
+              </Badge>
+            )}
 
-              <h1 className="text-4xl md:text-6xl font-extrabold text-blue-600 mt-2">
-                Cooking This Feature.
-              </h1>
+            {/* <DialogFooter>
+              <Button
+                variant="secondary"
+                // onClick={handleBuyProduct}
+                disabled={mutation.isPending}
+              >
+                {mutation.isPending ? "Placing Order..." : "Confirm Order"}
+              </Button>
+            </DialogFooter> */}
 
-              <p className="text-gray-500 mt-3 max-w-md">
-                I am going to launch My website very soon.
-                <br />
-                Stay tuned.
-              </p>
-            </div>
-          )}
-
-          <DialogFooter>
-            <Button
-              variant="secondary"
-              onClick={handleBuyProduct}
-              disabled={mutation.isPending}
-            >
-              {mutation.isPending ? "Placing Order..." : "Confirm Order"}
-            </Button>
-          </DialogFooter>
+            <DialogFooter>
+              {activePay === "cash-on" ? (
+                <Button
+                  variant="secondary"
+                  disabled={mutation.isPending}
+                  type="submit"
+                >
+                  {mutation.isPending ? "Placing Order..." : "Confirm Order"}
+                </Button>
+              ) : (
+                <Button
+                  type="button"
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                  onClick={() => {
+                    // axios.post("/api/ssl-payment", sslPayload).then((res) => {
+                    //   window.location.href = res.data.GatewayPageURL;
+                    // });
+                    handlePayment();
+                  }}
+                >
+                  Pay with SSLCommerz
+                </Button>
+              )}
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </div>

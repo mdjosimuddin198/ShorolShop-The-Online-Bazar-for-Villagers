@@ -3,14 +3,14 @@ import { ObjectId } from "mongodb";
 
 export const PATCH = async (req, { params }) => {
   try {
-    const { status } = await req.json();
+    const { deleveriStatus } = await req.json();
     const { orderId } = params; // URL এ order/product id path থেকে আসবে
 
     const collection = await dbConnect("MyOrder");
 
     const updateStatus = await collection.updateOne(
       { _id: new ObjectId(orderId) }, // filter
-      { $set: { status } } // update
+      { $set: { deleveriStatus } } // update
     );
 
     return new Response(JSON.stringify(updateStatus), { status: 200 });

@@ -29,7 +29,7 @@ export const POST = async (req) => {
     });
   }
 
-  order.quantity = 1;
+  // order.quantity = 1;
 
   const myOrders = await collection.insertOne(order);
   return Response.json({
@@ -37,16 +37,3 @@ export const POST = async (req) => {
     productId: myOrders.productId,
   });
 };
-
-// Store ID: noobb693a10731dd57
-// Store Password (API/Secret Key): noobb693a10731dd57@ssl
-
-// Merchant Panel URL: https://sandbox.sslcommerz.com/manage/ (Credential as you inputted in the time of registration)
-
-// Store name: testnoobbbmni
-// Registered URL: www.mdjosimuddin198.com
-// Session API to generate transaction: https://sandbox.sslcommerz.com/gwprocess/v3/api.php
-// Validation API: https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php?wsdl
-// Validation API (Web Service) name: https://sandbox.sslcommerz.com/validator/api/validationserverAPI.php
-
-// You may check our plugins available for multiple carts and libraries: https://github.com/sslcommerz

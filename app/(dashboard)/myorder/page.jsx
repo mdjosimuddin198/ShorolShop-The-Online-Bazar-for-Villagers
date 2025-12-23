@@ -66,8 +66,9 @@ const MyOrder = () => {
           <TableRow>
             <TableHead className="w-[100px]">Name</TableHead>
             <TableHead className="w-[100px]">Email</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>quantity</TableHead>
+            <TableHead>Payment Status </TableHead>
+            <TableHead>Deleveri Status</TableHead>
+            <TableHead>Quantity</TableHead>
             <TableHead>Amount</TableHead>
             <TableHead>Action</TableHead>
           </TableRow>
@@ -77,13 +78,20 @@ const MyOrder = () => {
             <TableRow key={myorder._id}>
               <TableCell className="font-medium">{myorder.name}</TableCell>
               <TableCell className="font-medium">{myorder.email}</TableCell>
+              <TableCell className="font-medium">
+                <Badge className="text-white" variant="">
+                  {myorder.PaymentStatus
+                    ? myorder.PaymentStatus
+                    : "cash on deleveri"}
+                </Badge>
+              </TableCell>
               <TableCell>
                 <Badge className="text-white" variant="secondary">
-                  {myorder.status}
+                  {myorder.deleveriStatus}
                 </Badge>
               </TableCell>
               <TableCell>{myorder.quantity}</TableCell>
-              <TableCell>{myorder.totalPrice} $</TableCell>
+              <TableCell>{myorder.unitPrice * myorder.quantity} $</TableCell>
               <TableCell>
                 <Button
                   className="cursor-pointer hover:scale-105"

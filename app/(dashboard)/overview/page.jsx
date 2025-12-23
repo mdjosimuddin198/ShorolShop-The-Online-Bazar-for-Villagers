@@ -12,10 +12,18 @@ import { toast } from "react-toastify";
 import OverViewLoading from "./OverViewLoading";
 import Link from "next/link";
 import UserDashboard from "./UserDashboard";
+import { useRouter } from "next/navigation";
 
 const Dashboard = () => {
+  const router = useRouter();
   const { data: session, status } = useSession();
-
+  useEffect(() => {
+    if (status !== "loading" && !session) {
+      router.push(
+        "/api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2Fregister"
+      );
+    }
+  }, [session, status, router]);
   // all products
   const {
     data: products,
@@ -58,13 +66,15 @@ const Dashboard = () => {
   const handleStatus = async (newStatus, orderId) => {
     axios
       .patch(`/api/buyproduct/${orderId}`, {
-        status: newStatus,
+        deleveriStatus: newStatus,
       })
       .then((res) => {
         if (res.data.modifiedCount === 1) {
           setOrders((prv) =>
             prv.map((order) =>
-              order._id === orderId ? { ...order, status: newStatus } : order
+              order._id === orderId
+                ? { ...order, deleveriStatus: newStatus }
+                : order
             )
           );
           toast.success("Order status updated successfully");
@@ -81,16 +91,25 @@ const Dashboard = () => {
   };
 
   const totalRevenue = MyOrder?.reduce(
-    (sum, product) => sum + product?.totalPrice,
+    (sum, product) => sum + product?.unitPrice * product?.quantity,
     0
   );
-
+  console.log(MyOrder);
   const userOrders = MyOrder?.filter(
     (orders) => orders.email === session.user.email
   );
 
   const userCost = userOrders?.reduce(
-    (sum, product) => sum + product.totalPrice,
+    (sum, product) => sum + product.unitPrice * product?.quantity,
+    0
+  );
+
+  const totalOrders = MyOrder?.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
+  const totlaMyOrders = userOrders?.reduce(
+    (sum, product) => sum + product.quantity,
     0
   );
 
@@ -107,7 +126,7 @@ const Dashboard = () => {
           },
           {
             title: "Total Orders",
-            value: MyOrder?.length,
+            value: totalOrders,
             change: "+8%",
             icon: ShoppingBag,
             trend: "up",
@@ -137,7 +156,7 @@ const Dashboard = () => {
           },
           {
             title: "My Orders",
-            value: userOrders?.length,
+            value: totlaMyOrders,
             change: "+8%",
             icon: ShoppingBag,
             trend: "up",
