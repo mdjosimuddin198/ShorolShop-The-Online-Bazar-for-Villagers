@@ -14,10 +14,13 @@ export const POST = async (req) => {
     total_amount: paymentInfo.totalPrice,
     currency: "BDT",
     tran_id: trxId,
-    success_url: "/api/success-payment",
-    fail_url: "/fail",
-    cancel_url: "/cancel",
-    ipn_url: "/ipn-success-payment",
+    success_url:
+      "https://shorol-shop-the-online-bazar-for-vi.vercel.app//api/success-payment",
+    fail_url: "https://shorol-shop-the-online-bazar-for-vi.vercel.app//fail",
+    cancel_url:
+      "https://shorol-shop-the-online-bazar-for-vi.vercel.app//cancel",
+    ipn_url:
+      "https://shorol-shop-the-online-bazar-for-vi.vercel.app//ipn-success-payment",
     shipping_method: "Courier",
     product_name: "Computer.",
     product_category: "Electronic",
